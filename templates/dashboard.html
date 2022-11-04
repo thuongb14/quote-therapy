@@ -8,6 +8,8 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="togglePlay">Toggle Play</button>
+
     {%for quote in all_quotes%}
     <div class="quote">
         <img src="{{quote['image_url']}}" alt="quote image">
@@ -17,5 +19,8 @@
     </div>
     {%endfor%}
     {{all_quotes}}
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
 </body>
 </html>

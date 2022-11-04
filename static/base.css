@@ -1,20 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');* {
     margin: 0;
     box-sizing: border-box;
-    background-color: rgb(243, 243, 237);
 }
 
 .logo {
     font-family: 'Pacifico', cursive;
-    font-size: 3rem;
+    font-size: 35px;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 header {
-    height: 100px;
     display: flex;
     flex-flow: row nowrap;
     align-items: baseline;
-    gap: 8rem;
+    gap: 100px;
     padding: 4rem 3rem;
 }
 
@@ -28,6 +30,22 @@ nav > ul {
 nav > ul > li > a {
     text-decoration: none;
     color: inherit;
-    font-size: 15px;
+    font-size: 18px;
 }
 
+a, a:visited {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover  {
+    color: inherit;
+    border-bottom: solid 2px #ff7a00;
+}
+
+footer {
+    background-color: #D5EB98;
+    color: grey;
+    padding: 1rem;
+    font-size: 12px;
+}

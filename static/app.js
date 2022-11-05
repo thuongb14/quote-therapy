@@ -29,7 +29,7 @@ const APIController = (function () {
 
     const data = await result.json();
     console.log(data.items[0]);
-    return data.items[Math.round(Math.random() * 15)].track.preview_url;
+    return data.items;
   };
 
   return {
@@ -44,6 +44,7 @@ const APIController = (function () {
 
 const loadPlaylist = async () => {
   const token = await APIController.getToken();
+
   const lovePlaylist = await APIController.getPlaylist(
     token,
     '3sCQjOcQ2OM9ubafs3cuOm'
@@ -60,19 +61,22 @@ const loadPlaylist = async () => {
     token,
     '4gWQkYXJODwOgk9ay6uuWF'
   );
-
   audios.forEach((audio) => {
     if (audio.className === 'happiness') {
-      audio.src = happinessPlaylist;
+      audio.src =
+        happinessPlaylist[Math.round(Math.random() * 15)].track.preview_url;
     }
     if (audio.className === 'motivational') {
-      audio.src = motivationalPlaylist;
+      audio.src =
+        motivationalPlaylist[Math.round(Math.random() * 15)].track.preview_url;
     }
     if (audio.className === 'love') {
-      audio.src = lovePlaylist;
+      audio.src =
+        lovePlaylist[Math.round(Math.random() * 15)].track.preview_url;
     }
     if (audio.className === 'inspirational') {
-      audio.src = inspirationalPlaylist;
+      audio.src =
+        inspirationalPlaylist[Math.round(Math.random() * 15)].track.preview_url;
     }
   });
 };
@@ -115,4 +119,3 @@ if (audioPlayers.length) {
     });
   });
 }
-

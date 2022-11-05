@@ -1,0 +1,26 @@
+{%extends "base.html"%} {%block style%}
+<link rel="stylesheet" href="/static/base.css" />
+<link rel="stylesheet" href="/static/delete_quote.css" />
+{%endblock style%} {%block title%}
+<title>Delete Quote</title>
+{%endblock title%} {%block main%}
+<main>
+  <div class="modal">
+    <div class="confirm">
+      <p>
+        Are you sure to delete the quote
+        <span style="font-weight: bold; color: red">
+          "{{quote['content']}}"</span
+        >?
+      </p>
+      <form action="/delete_quote_action/{{quote['id']}}" method="POST">
+        <input type="hidden" name="id" value="{{id}}" />
+        <button type="submit">Yes</button>
+        <a href="/dashboard">
+            <input type="button" value="No, return to dashboard"/>
+         </a>
+      </form>
+    </div>
+  </div>
+</main>
+{%endblock main%}

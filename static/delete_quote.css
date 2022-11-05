@@ -1,0 +1,33 @@
+.confirm {
+  text-align: center;
+  width: 150px;
+  margin: 15% auto; 
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fefefe;
+  width: 80%; 
+}
+
+main {
+  min-height: 800px;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+    border-bottom: none;
+}
+
+.modal {
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100vw; 
+  height: 100%; 
+  background-color: #474e5d;
+  padding-top: 50px;
+  opacity: 0.8;
+}

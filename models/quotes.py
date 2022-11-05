@@ -27,14 +27,27 @@ def insert_quote():
     return sql_write('INSERT INTO quotes(content, image_url, mood) VALUES (%s, %s, %s)', [content, image_url, mood])
 
 def render_quotes():
-    results = sql_select('SELECT content, image_url, mood FROM quotes ORDER BY id')
+    results = sql_select('SELECT id, content, image_url, mood FROM quotes ORDER BY id')
     
     all_quotes = []
 
     for row in results:
-        content, image_url, mood = row
-        quote = {'content': content, 'image_url': image_url, 'mood' : mood}
+        id, content, image_url, mood = row
+        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood}
         all_quotes.append(quote)
 
     return all_quotes
+
+def select_one_quote(id):
+    results = sql_select('SELECT id, content from quotes WHERE id = %s', [id])
+
+    for row in results:
+        id, content = row
+        quote = {'id': id,'content': content}
+    return quote
+
+def delete_one_quote(id):
+    return sql_write('DELETE FROM quotes WHERE id = %s', [id])
+    
+
 

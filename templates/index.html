@@ -12,8 +12,13 @@
       stress & life's challenges!
     </h2>
     <div class="first-section-button">
+
+      {%if user_name == 'Unknown'%}
       <a href="/log_in"><button class="log-in">Log In</button></a>
       <a href="/sign_up"><button class="sign-up">Sign Up</button></a>
+      {%else%}
+      <a href="/log_out_action"><button class="log-out">Log out</button></a>
+      {%endif%}
     </div>
   </section>
 

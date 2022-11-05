@@ -60,5 +60,12 @@ def edit_one_quote(id):
 
     return sql_write('UPDATE quotes SET content = %s, image_url = %s, mood= %s WHERE id = %s', [content, image_url, mood, id])
     
+def get_user():
+    email = request.form.get('email')
+    results = sql_select('SELECT id, name, email, avatar FROM users WHERE email = %s', [email])
+    for row in results:
+        id, name, email, avatar = row
+        user = [id, name, email, avatar]
+    return user
 
 

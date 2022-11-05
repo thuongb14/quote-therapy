@@ -1,6 +1,8 @@
 {%extends "base.html"%} {%block style%}
 <script defer src="/static/app.js"></script>
 <link rel="stylesheet" href="/static/dashboard.css" />
+<link rel="stylesheet" href="/static/base.css" />
+
 {%endblock style%} {%block title%}
 <title>Dashboard</title>
 {%endblock title%} {%block main%}
@@ -60,11 +62,12 @@
             clip-rule="evenodd" />
         </symbol>
       </svg>
-
+      {%if user_name != 'Unknown'%}
       <div class="button-controls">
         <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
         <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
       </div>
+      {%endif%}
     </div>
     {%endfor%}
   </section>

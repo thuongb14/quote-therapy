@@ -17,10 +17,26 @@ header {
     display: flex;
     flex-flow: row nowrap;
     align-items: baseline;
-    gap: 100px;
-    padding: 4rem 3rem;
+    justify-content: space-between;
+    padding: 4rem 2rem;
 }
 
+.left-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 5rem;
+}
+
+.right-header {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
+}
 nav > ul {
     display: flex;
     flex-flow: row nowrap;
@@ -32,6 +48,7 @@ nav > ul > li > a {
     text-decoration: none;
     color: inherit;
     font-size: 18px;
+    display: inline
 }
 
 a, a:visited {
@@ -48,15 +65,27 @@ a:hover {
 }
 
 main {
-    height: 100%;
+    min-height: 500px;
 }
 
 footer {
-    position: relative;
-    bottom: 0;
+    margin-top: auto;
     background-color: #D5EB98;
     color: grey;
     padding: 0.3rem;
     font-size: 12px;
 }
 
+.user-name {
+    font-weight: bold;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-avatar:hover {
+    cursor: pointer;
+}

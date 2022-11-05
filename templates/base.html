@@ -23,15 +23,25 @@
   </head>
   <body>
     <header>
-      <div class="logo">Quotes <i class="fa-solid fa-moon"></i> Therapy</div>
-      <nav>
-        <ul>
-          <li><a href="/"> Home</a></li>
-          <li><a href="/dashboard"> Get Inspired</a></li>
-          <li><a href="/about"> About</a></li>
-        </ul>
-      </nav>
+      <div class="left-header">
+        <div class="logo">Quotes <i class="fa-solid fa-moon"></i> Therapy</div>
+        <nav>
+          <ul>
+            <li><a href="/"> Home</a></li>
+            <li><a href="/dashboard"> Get Inspired</a></li>
+            <li><a href="/about"> About</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      {%if user_name != 'Unknown'%}
+      <div class="right-header">
+        <div class="user-name">{{user_name}}</div>
+        <div><img class="user-avatar" src="{{user_avatar}}" alt="user-avatar"></div>
+      </div>
+      {%endif%}
     </header>
+
     {%block main%}
     <main></main>
     {%endblock main%}

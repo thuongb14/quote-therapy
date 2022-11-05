@@ -31,6 +31,7 @@ const APIController = (function () {
     );
 
     const data = await result.json();
+    console.log(data.items)
     return data.items;
   };
 

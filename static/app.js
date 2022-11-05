@@ -140,15 +140,16 @@ search.addEventListener('click', () => {
   })
 })
 
+const imagesQuote = document.querySelectorAll('.quote-image')
 const modalContent = document.querySelector('.modal-content')
 
-quotes.forEach((quote) => {
+imagesQuote.forEach((quote) => {
   quote.addEventListener('click', (e) => {
     modal.classList.remove('hidden')
     modalContent.innerHTML = `
     <h3>Test</h3>
     <button class="modal-cancel">Cancel</button>
-    <img src="${quote.firstElementChild.src}">
+    <img src="${quote.src}">
     `
   })
 })

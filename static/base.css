@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');* {
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+* {
     margin: 0;
     box-sizing: border-box;
 }
@@ -44,6 +45,8 @@ a:hover  {
 }
 
 footer {
+    position: relative;
+    bottom: 0;
     background-color: #D5EB98;
     color: grey;
     padding: 1rem;

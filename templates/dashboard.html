@@ -1,26 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="/static/app.js"></script>
-    <title>Document</title>
-</head>
-<body>
-    <button id="togglePlay">Toggle Play</button>
+{%extends "base.html"%} {%block style%}
+<script defer src="/static/app.js"></script>
+<link rel="stylesheet" href="/static/dashboard.css">
+{%endblock style%} 
+{%block title%}
+<title>Dashboard</title>
+{%endblock title%} {%block main%}
+<main>
 
-    {%for quote in all_quotes%}
-    <div class="quote">
-        <img src="{{quote['image_url']}}" alt="quote image">
-        <p class="content">{{quote['content']}}</p>
-        <audio class="{{quote['mood']}}" controls>
-        </audio>
+<section class="first-section">
+    <h4>Look for the quote you like. Hit play, relax...</h4>  
+    <button><a href="/add_quote">Add your quote</a> </button>
+</section>
+
+<section class="second-section">
+  {%for quote in all_quotes%}
+  <div class="quote">
+    <img src="{{quote['image_url']}}" alt="quote image" />
+    <p style="font-weight: bold" class="content">{{quote['content']}}</p>
+
+    <div class="audio-player">
+        <audio preload="metadata" class="{{quote['mood']}}"></audio>
+      <div class="controls">
+        <button class="player-button">
+          <svg viewBox="0 0 20 20" fill="#ff7a00">
+            <use class="useBtn" href="#icon-play" />
+          </svg>
+        </button>
+        <input type="range" class="timeline" min="0" max="100" step="1" value="0">
+      </div>
     </div>
-    {%endfor%}
-    {{all_quotes}}
+   
+    <svg class="plyrBtns" style="display:none" aria-hidden="true">
+      <symbol class="icon icon-play" id="icon-play" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+      </symbol>
+      <symbol class="icon icon-pause" id="icon-pause" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </symbol>
+    </svg>
+  
+  </div>
+  {%endfor%} 
+</section>
 
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-
-</body>
-</html>
+</main>
+{%endblock main%}

@@ -1,39 +1,117 @@
 let audios = document.querySelectorAll('audio');
 
-const loveTracks = [
-    "https://audio.jukehost.co.uk/mxFLvAHdwVy1ZPvWTbn6hupKYDXE1Uar", //her,
-    "https://audio.jukehost.co.uk/QlNv7mcwD7C7b9cvGEjngOssK80jYPKb", //perfect on your own
-    "https://audio.jukehost.co.uk/OZSCEjPNMq9wetnvysJSxOK2FI180mUS", //too easily
-]
+const APIController = (function () {
+  const clientId = '982b5eff3b2e4aeb91756e5de416f734';
+  const clientSecret = '68083fb1d45244ec9bb7c480fd22bdc4';
 
-const hapinessTracks = [
-    "https://audio.jukehost.co.uk/bNk6Uijdz44HUFWT9DorrXi65OMEqvJN", //I miss you
-    "https://audio.jukehost.co.uk/7CPqHPM8Sh16Z3529pHhGYxS75UjsiRO", //spring waltz
-    "https://audio.jukehost.co.uk/YcxyBlQRzffjkrSk8Jv9lNwoPmqd31Et", //sunday
-]
+  const getToken = async () => {
+    const result = await fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: 'Basic ' + btoa(clientId + ':' + clientSecret),
+      },
+      body: 'grant_type=client_credentials',
+    });
 
-const motivationalTracks = [
-    "https://audio.jukehost.co.uk/fjAaLKtRwL7tsIt9vEuVjNO7MWmQDq8I", //cold brew coffee
-    "https://audio.jukehost.co.uk/nPL5qCGnE536fygRbWfObGb6wmz8kgow", //dreams
-    "https://audio.jukehost.co.uk/2aUc6bFEi7nnr3w1byEB9hsfOax5HwOT", //samba
-]
+    const data = await result.json();
+    return data.access_token;
+  };
 
-const inspirationalTracks = [
-    "https://audio.jukehost.co.uk/dPgY14X0YypFJXDLgYqGVKr7RoKAVnO4", //sorry not answering
-    "https://audio.jukehost.co.uk/7UQXHsTBzEVa8oBCkjVmxy97tbLbajZB", //affection
-    "https://audio.jukehost.co.uk/A8eAfeHb1wJXseUaFdhMkriLTmjey4BR", //steps
+  const getPlaylist = async (token, playlist_id) => {
+    const result = await fetch(
+      `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
+      {
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + token },
+      }
+    );
 
-]
+    const data = await result.json();
+    console.log(data.items[0])
+    return data.items[Math.round(Math.random() * 10)].track.preview_url;
+  };
 
-audios.forEach((audio) => {
+  return {
+    getToken() {
+      return getToken();
+    },
+    getPlaylist(token, playlist_id) {
+      return getPlaylist(token, playlist_id);
+    },
+  };
+})();
+
+const loadPlaylist = async () => {
+  const token = await APIController.getToken();
+  const lovePlaylist = await APIController.getPlaylist(
+    token,
+    '3sCQjOcQ2OM9ubafs3cuOm'
+  );
+  const motivationalPlaylist = await APIController.getPlaylist(
+    token,
+    '2zZ6WRxzy9aByUvHRGc3Sw'
+  );
+  const inspirationalPlaylist = await APIController.getPlaylist(
+    token,
+    '3li1XfQKJnor5pi1TrEIop'
+  );
+  const happinessPlaylist = await APIController.getPlaylist(
+    token,
+    '4gWQkYXJODwOgk9ay6uuWF'
+  );
+
+  audios.forEach((audio) => {
     if (audio.className === 'happiness') {
-        audio.src = hapinessTracks[Math.round(Math.random() * hapinessTracks.length)]
-    } if(audio.className === 'motivational') {
-        audio.src = motivationalTracks[Math.round(Math.random() * motivationalTracks.length)]
-    } if(audio.className === 'love') {
-        audio.src = loveTracks[Math.round(Math.random() * loveTracks.length)]
-    } if(audio.className === 'inspirational') {
-        audio.src = inspirationalTracks[Math.round(Math.random() * inspirationalTracks.length)]
-    } 
-});
+      audio.src = happinessPlaylist;
+    }
+    if (audio.className === 'motivational') {
+      audio.src = motivationalPlaylist;
+    }
+    if (audio.className === 'love') {
+      audio.src = lovePlaylist;
+    }
+    if (audio.className === 'inspirational') {
+      audio.src = inspirationalPlaylist;
+    }
+  });
+};
 
+loadPlaylist();
+
+let audioPlayers = document.querySelectorAll(".audio-player");
+
+if (audioPlayers.length) {
+    audioPlayers.forEach(function(audioPlayer, i) {
+      let audio = audioPlayer.querySelector("audio");
+      let playerButton = audioPlayer.querySelector(".player-button");
+      playerButton.addEventListener("click", function(e) {
+        let current = e.currentTarget;
+        let audio = current.closest(".audio-player").querySelector("audio");
+        let btnSvg = current.querySelector(".useBtn");
+        if (!audio.paused) {
+          btnSvg.setAttribute("href", "#icon-play");
+          audio.pause();
+        } else {
+          btnSvg.setAttribute("href", "#icon-pause");
+          audio.play();
+        }
+      });
+  
+      let timeline = audioPlayer.querySelector('.timeline');
+      timeline.addEventListener('change', function(e) {
+        let time = (timeline.value * audio.duration) / 100;
+        audio.currentTime = time;
+      });
+  
+      audio.addEventListener('ended', function(e) {
+        console.log('audio finished');
+        timeline.value = 0;
+      });
+  
+      audio.addEventListener('timeupdate', function(e) {
+        let percentagePosition = (100 * audio.currentTime) / audio.duration;
+        timeline.value = percentagePosition;
+      });
+    });
+  }

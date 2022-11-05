@@ -1,0 +1,34 @@
+.first-section {
+    height: 320px;
+    background-image: url(https://images.unsplash.com/photo-1495312040802-a929cd14a6ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80);
+    background-size: cover;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Pacifico', cursive;
+}
+
+.second-section {
+    margin: 0 auto;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+form {
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-flow: column;
+}
+
+label {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+input, textarea {
+    width: 300px;
+}

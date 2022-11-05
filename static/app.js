@@ -28,8 +28,8 @@ const APIController = (function () {
     );
 
     const data = await result.json();
-    console.log(data.items[0])
-    return data.items[Math.round(Math.random() * 10)].track.preview_url;
+    console.log(data.items[0]);
+    return data.items[Math.round(Math.random() * 15)].track.preview_url;
   };
 
   return {
@@ -79,39 +79,39 @@ const loadPlaylist = async () => {
 
 loadPlaylist();
 
-let audioPlayers = document.querySelectorAll(".audio-player");
+let audioPlayers = document.querySelectorAll('.audio-player');
 
 if (audioPlayers.length) {
-    audioPlayers.forEach(function(audioPlayer, i) {
-      let audio = audioPlayer.querySelector("audio");
-      let playerButton = audioPlayer.querySelector(".player-button");
-      playerButton.addEventListener("click", function(e) {
-        let current = e.currentTarget;
-        let audio = current.closest(".audio-player").querySelector("audio");
-        let btnSvg = current.querySelector(".useBtn");
-        if (!audio.paused) {
-          btnSvg.setAttribute("href", "#icon-play");
-          audio.pause();
-        } else {
-          btnSvg.setAttribute("href", "#icon-pause");
-          audio.play();
-        }
-      });
-  
-      let timeline = audioPlayer.querySelector('.timeline');
-      timeline.addEventListener('change', function(e) {
-        let time = (timeline.value * audio.duration) / 100;
-        audio.currentTime = time;
-      });
-  
-      audio.addEventListener('ended', function(e) {
-        console.log('audio finished');
-        timeline.value = 0;
-      });
-  
-      audio.addEventListener('timeupdate', function(e) {
-        let percentagePosition = (100 * audio.currentTime) / audio.duration;
-        timeline.value = percentagePosition;
-      });
+  audioPlayers.forEach(function (audioPlayer, i) {
+    let audio = audioPlayer.querySelector('audio');
+    let playerButton = audioPlayer.querySelector('.player-button');
+    playerButton.addEventListener('click', function (e) {
+      let current = e.currentTarget;
+      let audio = current.closest('.audio-player').querySelector('audio');
+      let btnSvg = current.querySelector('.useBtn');
+      if (!audio.paused) {
+        btnSvg.setAttribute('href', '#icon-play');
+        audio.pause();
+      } else {
+        btnSvg.setAttribute('href', '#icon-pause');
+        audio.play();
+      }
     });
-  }
+
+    let timeline = audioPlayer.querySelector('.timeline');
+    timeline.addEventListener('change', function (e) {
+      let time = (timeline.value * audio.duration) / 100;
+      audio.currentTime = time;
+    });
+
+    audio.addEventListener('ended', function (e) {
+      console.log('audio finished');
+      timeline.value = 0;
+    });
+
+    audio.addEventListener('timeupdate', function (e) {
+      let percentagePosition = (100 * audio.currentTime) / audio.duration;
+      timeline.value = percentagePosition;
+    });
+  });
+}

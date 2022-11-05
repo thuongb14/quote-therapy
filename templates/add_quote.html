@@ -1,32 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <main>
+{%extends "base.html"%} 
+{%block style%} 
+<link rel="stylesheet" href="/static/base.css" />
+<link rel="stylesheet" href="/static/add_quote.css" />
+{%endblock style%} {%block title%}
 
-    <form action="/add_quote_action" method="POST">
-        <label for="content"> Quote Content:
-            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+<title>Add your quote</title>
+{%endblock title%} 
+
+{%block main%}
+<main>
+
+    <section class="first-section">
+        <h4>Add your quote</h4>
+    </section>
+
+    <section class="second-section">
+    <form action="/add_quote_action" method="POST" enctype="multipart/form-data">
+        <label for="content"> Quote Content*:
+            <textarea name="content" id="content" cols="30" rows="10" required></textarea>
         </label>
-        <label for="image"> Quote Image:
-            <input type="url" name="image" id="image">
+        <label for="image"> Quote Image*:
+            <input type="file" name="image" accept="image/*" id="image" required>
         </label>
-        <label for="mood"> Quote Mood
-            <select name="mood" id="mood">
+        <label for="mood"> Quote Mood*:
+            <select name="mood" id="mood" required>
                 <option value="happiness">Happiness</option>
                 <option value="inspirational">Inspirational</option>
                 <option value="motivational">Motivational</option>
                 <option value="love">Love</option>
             </select>
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" value="upload">Submit</button>
     </form>
-            
+</section>
 </main>
-</body>
-</html>
+{%endblock main%}
+

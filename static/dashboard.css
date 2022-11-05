@@ -2,10 +2,10 @@
 
 .second-section {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: baseline;
-    gap: 5rem;
+    gap: 1rem;
     padding-bottom: 3rem;
 }
 
@@ -23,6 +23,7 @@
 
 .quote {
     height: 500px;
+    width: 350px;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -31,12 +32,15 @@
 }
 
 img {
-    max-width: 200px;
+    max-width: 300px;
     max-height: 300px;
 }
 
 p {
     margin: 0;
+    width: 300px;
+    height: 50px;
+    text-align: center;
 }
 
 
@@ -46,19 +50,20 @@ button {
 svg {
     display: block;
     width: 1em;
-  }
+}
   
-  .player-button {
+.player-button {
     display: inline-block;
     height: 1em;
     background: none;
     padding: 0;
     border: none;
-    font-size: 1.2em;
+    font-size: 1.3em;
     position: relative;
     bottom: -0.15em;
-  }
+}
 
 a {
     text-decoration: none;
+    color: inherit
 }

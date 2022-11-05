@@ -48,6 +48,17 @@ def select_one_quote(id):
 
 def delete_one_quote(id):
     return sql_write('DELETE FROM quotes WHERE id = %s', [id])
+
+def edit_one_quote(id):
+    content = request.form.get('content')
+    mood = request.form.get('mood')
+    image_url = request.files['image']
+
+    #upload to cloudinary
+    response = cloudinary.uploader.upload(image_url, filename=image_url.filename)
+    image_url = response['secure_url']
+
+    return sql_write('UPDATE quotes SET content = %s, image_url = %s, mood= %s WHERE id = %s', [content, image_url, mood, id])
     
 
 

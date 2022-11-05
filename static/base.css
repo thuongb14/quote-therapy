@@ -39,9 +39,16 @@ a, a:visited {
     text-decoration: none;
 }
 
-a:hover  {
-    color: inherit;
+li:hover  {
     border-bottom: solid 2px #ff7a00;
+}
+
+a:hover {
+    color: inherit;
+}
+
+main {
+    height: 100%;
 }
 
 footer {
@@ -49,6 +56,7 @@ footer {
     bottom: 0;
     background-color: #D5EB98;
     color: grey;
-    padding: 1rem;
+    padding: 0.3rem;
     font-size: 12px;
 }
+

@@ -3,21 +3,22 @@
 <link rel="stylesheet" href="/static/add_quote.css" />
 {%endblock style%} {%block title%}
 
-<title>Add your quote</title>
+<title>Edit quote</title>
 {%endblock title%} {%block main%}
 <main>
   <section class="first-section">
-    <h4>Add your quote</h4>
+    <h4>Edit quote</h4>
   </section>
 
   <section class="second-section">
     <form
-      action="/add_quote_action"
+      action="/edit_quote_action/{{quote['id']}}"
       method="POST"
       enctype="multipart/form-data">
       <label for="content">
         Quote Content*:
         <textarea
+        placeholder="{{quote['content']}}"
           name="content"
           id="content"
           cols="30"

@@ -1,57 +1,72 @@
 {%extends "base.html"%} {%block style%}
 <script defer src="/static/app.js"></script>
-<link rel="stylesheet" href="/static/dashboard.css">
-{%endblock style%} 
-{%block title%}
+<link rel="stylesheet" href="/static/dashboard.css" />
+{%endblock style%} {%block title%}
 <title>Dashboard</title>
 {%endblock title%} {%block main%}
 <main>
+  <section class="first-section">
+    <h4>Look for the quote you like. Hit play, relax...</h4>
+    <button><a href="/add_quote">Add your quote</a></button>
+  </section>
 
-<section class="first-section">
-    <h4>Look for the quote you like. Hit play, relax...</h4>  
-    <button><a href="/add_quote">Add your quote</a> </button>
-</section>
-
-<section class="search-section">
+  <section class="search-section">
     <div class="search">
-       <input type="text" class="searchTerm" placeholder="Search quotes by mood">
-       <button type="submit" class="searchButton">
-         <i class="fa fa-search"></i>
+      <input
+        type="text"
+        class="searchTerm"
+        placeholder="Search quotes by mood" />
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
       </button>
     </div>
-</section>
+  </section>
 
-<section class="second-section">
-  
-  {%for quote in all_quotes%}
-  <div id="quote" class="{{quote['mood']}}">
-    <img src="{{quote['image_url']}}" alt="quote image" />
-    <p style="font-weight: bold" class="content">{{quote['content']}}</p>
+  <section class="second-section">
+    {%for quote in all_quotes%}
+    <div id="quote" class="{{quote['mood']}}">
+      <img src="{{quote['image_url']}}" alt="quote image" />
+      <p style="font-weight: bold" class="content">{{quote['content']}}</p>
 
-    <div class="audio-player">
+      <div class="audio-player">
         <audio preload="metadata" class="{{quote['mood']}}"></audio>
-      <div class="controls">
-        <button class="player-button">
-          <svg viewBox="0 0 20 20" fill="#ff7a00">
-            <use class="useBtn" href="#icon-play" />
-          </svg>
-        </button>
-        <input type="range" class="timeline" min="0" max="100" step="1" value="0">
+        <div class="controls">
+          <button class="player-button">
+            <svg viewBox="0 0 20 20" fill="#ff7a00">
+              <use class="useBtn" href="#icon-play" />
+            </svg>
+          </button>
+          <input
+            type="range"
+            class="timeline"
+            min="0"
+            max="100"
+            step="1"
+            value="0" />
+        </div>
+      </div>
+
+      <svg class="plyrBtns" style="display: none" aria-hidden="true">
+        <symbol class="icon icon-play" id="icon-play" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+            clip-rule="evenodd" />
+        </symbol>
+        <symbol class="icon icon-pause" id="icon-pause" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
+            clip-rule="evenodd" />
+        </symbol>
+      </svg>
+
+      <div class="button-controls">
+        <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
+        <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
       </div>
     </div>
-   
-    <svg class="plyrBtns" style="display:none" aria-hidden="true">
-      <symbol class="icon icon-play" id="icon-play" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-      </symbol>
-      <symbol class="icon icon-pause" id="icon-pause" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-      </symbol>
-    </svg>
-    <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
-  </div>
-  {%endfor%} 
-</section>
-
+    {%endfor%}
+  </section>
 </main>
 {%endblock main%}

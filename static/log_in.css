@@ -1,0 +1,45 @@
+
+
+main {
+  height: 800px;
+  background-image: url(https://images.unsplash.com/photo-1524262134826-05a36ba28ec4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+  background-size: cover;
+}
+
+h3 {
+    font-family: 'Pacifico', cursive;
+    padding-bottom: 2rem;
+
+}
+
+.log-in-section {
+    position: relative;
+    top: 15%;
+    background-color: white;
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 5%;
+    box-shadow: 0px 0px 15px rgb(105, 105, 105);
+}
+
+form {
+    padding: 0 3rem;
+    width: 350px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+label {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+form > button {
+    background-color: #FFA370;
+}

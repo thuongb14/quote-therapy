@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
-from models.quotes import delete_one_quote, insert_quote, render_quotes, select_one_quote
+from models.quotes import edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
 from models.database import sql_select
 app = Flask(__name__)
 
@@ -38,6 +38,20 @@ def delete_quote_action(id):
 
     return redirect(url_for('dashboard'))
 
+@app.route('/edit_quote/<id>')
+def edit_quote(id):
+    quote = select_one_quote(id)
+    return render_template('edit_quote.html', quote=quote)
+
+@app.route('/edit_quote_action/<id>', methods=['POST'])
+def edit_quote_action(id):
+    edit_one_quote(id)
+
+    return redirect(url_for('dashboard'))
+
+@app.route('/log_in')
+def log_in():
+    return render_template('log_in.html')
     
 if __name__ == '__main__':
     # Import the variables from the .env file

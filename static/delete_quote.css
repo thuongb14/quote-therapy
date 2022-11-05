@@ -1,11 +1,11 @@
 .confirm {
   text-align: center;
   width: 150px;
-  margin: 15% auto; 
+  margin: 15% auto;
   padding: 20px;
   border-radius: 10px;
   background-color: #fefefe;
-  width: 80%; 
+  width: 80%;
 }
 
 main {
@@ -17,16 +17,16 @@ a {
 }
 
 a:hover {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .modal {
-  position: fixed; 
-  z-index: 1; 
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100vw; 
-  height: 100%; 
+  width: 100vw;
+  height: 100%;
   background-color: #474e5d;
   padding-top: 50px;
   opacity: 0.8;

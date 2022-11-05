@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+
+.first-section {
+    background-image: url(https://img.freepik.com/free-vector/gradient-background-vector-spring-colors_53876-117271.jpg?w=996&t=st=1667650414~exp=1667651014~hmac=70ded849b62cb92a408c87fa77d77c675d93b6dc2972d446c0fdba8df367f77e);
+    background-size: cover;
+    height: 500px;
+    padding: 4rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    font-family: 'Pacifico', cursive;
+}
+
+.text-content {
+    padding: 3rem;
+    text-align: center;
+    width: 600px;
+    font-family: 'Albert Sans', sans-serif;
+}
+
+.second-section {
+    height: 500px;
+}

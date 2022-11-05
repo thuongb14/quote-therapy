@@ -64,22 +64,23 @@ const loadPlaylist = async () => {
     token,
     '4gWQkYXJODwOgk9ay6uuWF'
   );
+
   audios.forEach((audio) => {
     if (audio.className === 'happiness') {
       audio.src =
-        happinessPlaylist[Math.round(Math.random() * 15)].track.preview_url;
+        happinessPlaylist[Math.round(Math.random() * 20)].track.preview_url;
     }
     if (audio.className === 'motivational') {
       audio.src =
-        motivationalPlaylist[Math.round(Math.random() * 15)].track.preview_url;
+        motivationalPlaylist[Math.round(Math.random() * 20)].track.preview_url;
     }
     if (audio.className === 'love') {
       audio.src =
-        lovePlaylist[Math.round(Math.random() * 15)].track.preview_url;
+        lovePlaylist[Math.round(Math.random() * 20)].track.preview_url;
     }
     if (audio.className === 'inspirational') {
       audio.src =
-        inspirationalPlaylist[Math.round(Math.random() * 15)].track.preview_url;
+        inspirationalPlaylist[Math.round(Math.random() * 20)].track.preview_url;
     }
   });
 };

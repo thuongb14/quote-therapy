@@ -9,11 +9,13 @@
 <main>
   <section class="first-section">
     <h4>Look for the quote you like. Hit play, relax...</h4>
+    {%if user_name != 'Unknown'%}
     <button><a href="/add_quote">Add your quote</a></button>
+    {%endif%}
   </section>
 
   <section class="search-section">
-    <div class="search">
+    <form action="#" class="search">
       <input
         type="text"
         class="searchTerm"
@@ -21,7 +23,7 @@
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
       </button>
-    </div>
+    </form>
   </section>
 
   <section class="second-section">

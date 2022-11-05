@@ -101,6 +101,13 @@ def log_out_action():
     response.delete_cookie('session')
 
     return response
+
+@app.route('/about')
+def about():
+    user_name = session.get('user_name', 'Unknown')
+    user_avatar = session.get('user_avatar')
+
+    return render_template('about.html', user_name=user_name, user_avatar=user_avatar)
     
 if __name__ == '__main__':
     # Import the variables from the .env file

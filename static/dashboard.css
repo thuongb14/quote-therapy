@@ -13,7 +13,7 @@
 }
 
 .search > input {
-  width: 30vw;
+  width: 50vw;
 }
 .first-section {
   height: 320px;
@@ -26,6 +26,7 @@
   align-items: center;
   font-family: 'Pacifico', cursive;
 }
+
 
 #quote {
   height: 500px;

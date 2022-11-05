@@ -42,4 +42,10 @@ label {
 
 form > button {
     background-color: #FFA370;
+    border: none;
+}
+
+form > button:hover {
+    background-color: #f08c56
+;
 }

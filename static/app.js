@@ -1,5 +1,8 @@
-let audios = document.querySelectorAll('audio');
+const audios = document.querySelectorAll('audio');
+const quotes = document.querySelectorAll('#quote')
+const search = document.querySelector('.searchButton')
 
+//Spotify API
 const APIController = (function () {
   const clientId = '982b5eff3b2e4aeb91756e5de416f734';
   const clientSecret = '68083fb1d45244ec9bb7c480fd22bdc4';
@@ -28,7 +31,6 @@ const APIController = (function () {
     );
 
     const data = await result.json();
-    console.log(data.items[0]);
     return data.items;
   };
 
@@ -83,7 +85,8 @@ const loadPlaylist = async () => {
 
 loadPlaylist();
 
-let audioPlayers = document.querySelectorAll('.audio-player');
+//Control audio tag
+const audioPlayers = document.querySelectorAll('.audio-player');
 
 if (audioPlayers.length) {
   audioPlayers.forEach(function (audioPlayer, i) {
@@ -109,7 +112,6 @@ if (audioPlayers.length) {
     });
 
     audio.addEventListener('ended', function (e) {
-      console.log('audio finished');
       timeline.value = 0;
     });
 
@@ -119,3 +121,18 @@ if (audioPlayers.length) {
     });
   });
 }
+
+//Search function
+search.addEventListener('click', () => {
+  let input = document.querySelector('.searchTerm').value.toLowerCase()
+  quotes.forEach((quote) => {
+    if (quote.className !== input) {
+      quote.style = 'display: none'
+    } else if (quote.className === input){
+      quote.style = 'display: '
+    } 
+    if (input == '') {
+      quote.style = 'display: '
+    }
+  })
+})

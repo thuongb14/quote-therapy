@@ -1,6 +1,7 @@
 const audios = document.querySelectorAll('audio');
 const quotes = document.querySelectorAll('#quote')
 const search = document.querySelector('.searchButton')
+const modal = document.querySelector('.modal')
 
 //Spotify API
 const APIController = (function () {
@@ -137,4 +138,23 @@ search.addEventListener('click', () => {
       quote.style = 'display: '
     }
   })
+})
+
+const modalContent = document.querySelector('.modal-content')
+
+quotes.forEach((quote) => {
+  quote.addEventListener('click', (e) => {
+    modal.classList.remove('hidden')
+    modalContent.innerHTML = `
+    <h3>Test</h3>
+    <button class="modal-cancel">Cancel</button>
+    <img src="${quote.firstElementChild.src}">
+    `
+  })
+})
+
+window.addEventListener('click', (e) => {
+  if (e.target.className === 'modal-cancel') {
+    modal.classList.add('hidden')
+  }
 })

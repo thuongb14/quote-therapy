@@ -28,6 +28,11 @@
   font-family: 'Pacifico', cursive;
 }
 
+.quote-image:hover {
+  transition: all 0.5s;
+  transform: scale(1.32);
+}
+
 #quote {
   height: 500px;
   width: 280px;

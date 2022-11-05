@@ -87,7 +87,7 @@ def log_in_action():
     if user == [] or user == 'Unknown':
         return render_template('log_in.html', user_name=user_name, user_avatar=user_avatar)
 
-    response = make_response(redirect(url_for('dashboard')))
+    response = make_response(redirect('/'))
 
     session['user_name'] = user[1]
     session['user_id'] = user[0]

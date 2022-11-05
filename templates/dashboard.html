@@ -8,7 +8,7 @@
 {%endblock title%} {%block main%}
 <main>
   <section class="first-section">
-    <h4>Look for the quote you like. Hit play, relax...</h4>
+    <h4>You'll find the quote you need. Hit play, relax...</h4>
     {%if user_name != 'Unknown'%}
     <button><a href="/add_quote">Add your quote</a></button>
     {%endif%}
@@ -29,11 +29,11 @@
   <section class="second-section">
     {%for quote in all_quotes%}
     <div id="quote" class="{{quote['mood']}}">
-      <img src="{{quote['image_url']}}" alt="quote image" />
+      <img class="quote-image" src="{{quote['image_url']}}" alt="quote image" />
       <p style="font-weight: bold" class="content">{{quote['content']}}</p>
 
       <div class="audio-player">
-        <audio preload="metadata" class="{{quote['mood']}}"></audio>
+        <audio preload="metadata" src="" class="{{quote['mood']}}"></audio>
         <div class="controls">
           <button class="player-button">
             <svg viewBox="0 0 20 20" fill="#ff7a00">

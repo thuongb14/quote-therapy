@@ -19,7 +19,7 @@ Quote Therapy is a website to share and look for quotes that can help you to che
 * PostgreSQL
 
 ## Project Planning
-Quote Therapy follows CRUD functions: Create, Read, Update and Delete. With Jinja template, all pages follow a base template to represent fixed header and footer
+Quote Therapy follows CRUD functions: Create, Read, Update and Delete. With Jinja template, all pages follow a base template to represent fixed header and footer.
 ### Home Page
 Elements in home page:
 * Logo
@@ -28,6 +28,13 @@ Elements in home page:
 
 ### Dashboard
 Elements in dashboard:
+* Add quote button (available when user logs in)
+* Edit & Delete quote button (right now, these buttons are available for all users, planning to make users can only edit & delete the quote that they shared and only admin can have access to edit and delete all quotes)
+* Audio control for each quote - The tracks are fetched from Spotify API, but can only play the preview version which is for 29 seconds.
+* Image click to show details of the quote.
+
+## About Us:
+
 
 
 

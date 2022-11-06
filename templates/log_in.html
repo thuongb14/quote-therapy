@@ -6,24 +6,29 @@
 <title>Log In</title>
 {%endblock title%} {%block main%}
 <main>
-    <section class="log-in-section">
-        <h3>Quotes <i class="fa-solid fa-moon"></i> Therapy</h3>
-        <form action="log_in_action" method="POST">
-            <label for="email">
-                Email:
-                <input type="email" name="email" id="email" required>
-            </label>
-            <label for="password">Password:
-                <input type="password" name="password" id="password">
-            </label>
-            <button type="submit">
-                Log In
-            </button>
-        </form>
-        <div class="sign-up-section">
-            Don't have an account yet? 
-            <button>Sign Up</button>
-        </div>
-    </section>
+  <section class="log-in-section">
+    <h3>Quotes <i class="fa-solid fa-moon"></i> Therapy</h3>
+    <form action="log_in_action" method="POST">
+      <label for="email">
+        Email:
+        <input type="email" name="email" id="email" required />
+        {%if user == [] %}
+        <p style="color: red">User Not Found</p>
+        {%endif%}
+      </label>
+      <label for="password"
+        >Password:
+        <input type="password" name="password" id="password" />
+        {%if user == 'Invalid Password'%}
+        <p style="color: red">Incorrect Password</p>
+        {%endif%}
+      </label>
+      <button type="submit">Log In</button>
+    </form>
+    <div class="sign-up-section">
+      Don't have an account yet?
+      <button>Sign Up</button>
+    </div>
+  </section>
 </main>
 {%endblock main%}

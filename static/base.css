@@ -1,91 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .logo {
-    font-family: 'Pacifico', cursive;
-    font-size: 35px;
+  font-family: 'Pacifico', cursive;
+  font-size: 35px;
 }
 
 .logo:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 header {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 4rem 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 4rem 2rem;
 }
 
 .left-header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: baseline;
-    gap: 5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 5rem;
 }
 
 .right-header {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 1rem;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1rem;
 }
 nav > ul {
-    display: flex;
-    flex-flow: row nowrap;
-    list-style-type: none;
-    gap: 3rem;
+  display: flex;
+  flex-flow: row nowrap;
+  list-style-type: none;
+  gap: 3rem;
 }
 
 nav > ul > li > a {
-    text-decoration: none;
-    color: inherit;
-    font-size: 18px;
-    display: inline
+  text-decoration: none;
+  color: inherit;
+  font-size: 18px;
+  display: inline;
 }
 
-a, a:visited {
-    cursor: pointer;
-    text-decoration: none;
+a,
+a:visited {
+  cursor: pointer;
+  text-decoration: none;
 }
 
-li:hover  {
-    border-bottom: solid 2px #ff7a00;
+li:hover {
+  border-bottom: solid 2px #ff7a00;
 }
 
 a:hover {
-    color: inherit;
+  color: inherit;
 }
 
 main {
-    min-height: 500px;
+  min-height: 500px;
 }
 
 footer {
-    margin-top: auto;
-    background-color: #D5EB98;
-    color: grey;
-    padding: 0.3rem;
-    font-size: 12px;
+  margin-top: auto;
+  background-color: #d5eb98;
+  color: grey;
+  padding: 0.3rem;
+  font-size: 12px;
 }
 
 .user-name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .user-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .user-avatar:hover {
-    cursor: pointer;
+  cursor: pointer;
 }

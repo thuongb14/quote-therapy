@@ -1,7 +1,7 @@
 const audios = document.querySelectorAll('audio');
-const quotes = document.querySelectorAll('#quote')
-const search = document.querySelector('.searchButton')
-const modal = document.querySelector('.modal')
+const quotes = document.querySelectorAll('#quote');
+const search = document.querySelector('.searchButton');
+const modal = document.querySelector('.modal');
 
 //Spotify API
 const APIController = (function () {
@@ -32,7 +32,7 @@ const APIController = (function () {
     );
 
     const data = await result.json();
-    console.log(data.items)
+    console.log(data.items);
     return data.items;
   };
 
@@ -68,20 +68,35 @@ const loadPlaylist = async () => {
 
   audios.forEach((audio) => {
     if (audio.className === 'happiness') {
-      audio.src =
-        happinessPlaylist[Math.round(Math.random() * 20)].track.preview_url;
+      let happinessTrack =
+        happinessPlaylist[Math.round(Math.random() * 20)].track;
+      let artists = happinessTrack.artists;
+      audio.src = happinessTrack.preview_url;
+      audio.dataset.name = happinessTrack.name;
+      audio.dataset.artist = artists[0]['name'];
     }
     if (audio.className === 'motivational') {
-      audio.src =
-        motivationalPlaylist[Math.round(Math.random() * 20)].track.preview_url;
+      let motivationalTrack =
+        motivationalPlaylist[Math.round(Math.random() * 20)].track;
+      let artists = motivationalTrack.artists;
+      audio.src = motivationalTrack.preview_url;
+      audio.dataset.name = motivationalTrack.name;
+      audio.dataset.artist = artists[0]['name'];
     }
     if (audio.className === 'love') {
-      audio.src =
-        lovePlaylist[Math.round(Math.random() * 20)].track.preview_url;
+      let loveTrack = lovePlaylist[Math.round(Math.random() * 20)].track;
+      let artists = loveTrack.artists;
+      audio.src = loveTrack.preview_url;
+      audio.dataset.name = loveTrack.name;
+      audio.dataset.artist = artists[0].name;
     }
     if (audio.className === 'inspirational') {
-      audio.src =
-        inspirationalPlaylist[Math.round(Math.random() * 20)].track.preview_url;
+      let inspirationalTrack =
+        inspirationalPlaylist[Math.round(Math.random() * 20)].track;
+      let artists = inspirationalTrack.artists;
+      audio.src = inspirationalTrack.preview_url;
+      audio.dataset.name = inspirationalTrack.name;
+      audio.dataset.artist = artists[0]['name'];
     }
   });
 };
@@ -127,35 +142,39 @@ if (audioPlayers.length) {
 
 //Search function
 search.addEventListener('click', () => {
-  let input = document.querySelector('.searchTerm').value.toLowerCase()
+  let input = document.querySelector('.searchTerm').value.toLowerCase();
   quotes.forEach((quote) => {
     if (quote.className !== input) {
-      quote.style = 'display: none'
-    } else if (quote.className === input){
-      quote.style = 'display: '
-    } 
-    if (input == '') {
-      quote.style = 'display: '
+      quote.style = 'display: none';
+    } else if (quote.className === input) {
+      quote.style = 'display: ';
     }
-  })
-})
+    if (input == '') {
+      quote.style = 'display: ';
+    }
+  });
+});
 
-const imagesQuote = document.querySelectorAll('.quote-image')
-const modalContent = document.querySelector('.modal-content')
+const imagesQuote = document.querySelectorAll('.quote-image');
+const modalContent = document.querySelector('.modal-content');
 
+//Quote pop up modal
 imagesQuote.forEach((quote) => {
   quote.addEventListener('click', (e) => {
-    modal.classList.remove('hidden')
+    modal.classList.remove('hidden');
     modalContent.innerHTML = `
-    <h3>Test</h3>
-    <button class="modal-cancel">Cancel</button>
-    <img src="${quote.src}">
-    `
-  })
-})
+    <h5 class="quote-name">${quote.nextElementSibling.innerText}</h5>
+    <img class="quote-img" src="${quote.src}">
+    <p class="track-name">Track name: ${quote.nextElementSibling.nextElementSibling.firstElementChild.dataset.name}
+    </p>
+    <p class="track-artist">Artist: ${quote.nextElementSibling.nextElementSibling.firstElementChild.dataset.artist}
+    </p>
+    `;
+  });
+});
 
 window.addEventListener('click', (e) => {
-  if (e.target.className === 'modal-cancel') {
-    modal.classList.add('hidden')
+  if (e.target.className === 'modal') {
+    modal.classList.add('hidden');
   }
-})
+});

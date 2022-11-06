@@ -1,6 +1,7 @@
 from .database import sql_write, sql_select
 import os
-from flask import request
+from flask import request, redirect
+import bcrypt
 
 CLOUDINARY_CLOUD = os.environ.get('CLOUDINARY_CLOUD')
 CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')
@@ -60,12 +61,27 @@ def edit_one_quote(id):
 
     return sql_write('UPDATE quotes SET content = %s, image_url = %s, mood= %s WHERE id = %s', [content, image_url, mood, id])
     
-def get_user():
-    email = request.form.get('email')
-    results = sql_select('SELECT id, name, email, avatar FROM users WHERE email = %s', [email])
-    for row in results:
-        id, name, email, avatar = row
-        user = [id, name, email, avatar]
+def get_user(email):
+    results = sql_select('SELECT id, name, email, password, avatar, isAdmin FROM users WHERE email = %s', [email])
+    if results == []:
+        user = []
+    else:
+        for row in results:
+            id, name, email, password, avatar, isAdmin = row
+            user = [id, name, email, password, avatar, isAdmin]
+        print(user[5])
     return user
 
+def check_log_in():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    user = get_user(email) #get info from sql
+    if user == []:
+        return user
+    else:
+        valid = bcrypt.checkpw(password.encode(), user[3].encode()) #check pw input hash with data
+        if not valid:
+            return 'Invalid Password'
+        else:
+            return user
 

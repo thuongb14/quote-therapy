@@ -33,7 +33,7 @@
       <p style="font-weight: bold" class="content">{{quote['content']}}</p>
 
       <div class="audio-player">
-        <audio preload="metadata" src="" class="{{quote['mood']}}"></audio>
+        <audio class="{{quote['mood']}}"></audio>
         <div class="controls">
           <button class="player-button">
             <svg viewBox="0 0 20 20" fill="#ff7a00">
@@ -64,7 +64,7 @@
             clip-rule="evenodd" />
         </symbol>
       </svg>
-      {%if user_name != 'Unknown'%}
+      {%if user_isAdmin == True%}
       <div class="button-controls">
         <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
         <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>

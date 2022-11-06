@@ -1,6 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, make_response, session
-from models.quotes import check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
-from models.database import sql_select
+from models.quotes import check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'super secret key'
@@ -124,6 +123,20 @@ def sign_up():
     user_avatar = session.get('user_avatar')
     return render_template('sign_up.html', user_name=user_name, user_avatar=user_avatar)
     
+@app.route('/sign_up_action', methods=['POST'])
+def sign_up_action():
+    user = check_sign_up()
+
+    user_name = session.get('user_name', 'Unknown')
+    user_avatar = session.get('user_avatar')
+
+    if user == 'Email has been used':
+        return render_template('sign_up.html', user_name=user_name, user_avatar=user_avatar, user=user)
+    else:
+        response = redirect('/log_in')
+        return response
+
+
 if __name__ == '__main__':
     # Import the variables from the .env file
     from dotenv import load_dotenv

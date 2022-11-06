@@ -85,3 +85,27 @@ def check_log_in():
         else:
             return user
 
+def check_sign_up():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    password = request.form.get('password') 
+    avatar = request.files['avatar']
+    password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+    response = cloudinary.uploader.upload(avatar)
+    avatar = response['secure_url']
+
+    all_emails = []
+
+    results = sql_select('SELECT email FROM users')
+
+    for row in results:
+        item = row[0]
+        all_emails.append(item)
+
+    if email in all_emails:
+        return 'Email has been used'
+    else:
+        return sql_write('INSERT INTO users (name, email,  password, avatar) VALUES (%s, %s, %s, %s)', [name, email, password_hash, avatar])
+
+

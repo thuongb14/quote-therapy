@@ -1,1 +1,3 @@
 INSERT INTO users(name, email, password, avatar, isAdmin) VALUES ('Lizzy Truong', 'thuongb14@gmail.com', '$2b$12$4.06B0CkabKM41qoVEV9lOGRn0l5u0e1PYFAf7k8/3Lba78TD4CJG', 'https://static.vecteezy.com/system/resources/previews/005/419/157/non_2x/female-user-profile-avatar-is-a-woman-a-character-for-a-screen-saver-with-emotions-illustration-on-a-white-isolated-background-vector.jpg', TRUE);
+
+INSERT INTO quotes(content, mood, image_url) VALUES ('Dont stop until you proud', 'love', 'https://res.cloudinary.com/dqlrkabpl/image/upload/v1667736845/nwawdd62acof1wn2qgc8.jpg')

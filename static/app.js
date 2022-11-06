@@ -69,7 +69,7 @@ const loadPlaylist = async () => {
   audios.forEach((audio) => {
     if (audio.className === 'happiness') {
       let happinessTrack =
-        happinessPlaylist[Math.round(Math.random() * 20)].track;
+        happinessPlaylist[Math.round(Math.random() * 30)].track;
       let artists = happinessTrack.artists;
       audio.src = happinessTrack.preview_url;
       audio.dataset.name = happinessTrack.name;
@@ -77,14 +77,14 @@ const loadPlaylist = async () => {
     }
     if (audio.className === 'motivational') {
       let motivationalTrack =
-        motivationalPlaylist[Math.round(Math.random() * 20)].track;
+        motivationalPlaylist[Math.round(Math.random() * 30)].track;
       let artists = motivationalTrack.artists;
       audio.src = motivationalTrack.preview_url;
       audio.dataset.name = motivationalTrack.name;
       audio.dataset.artist = artists[0]['name'];
     }
     if (audio.className === 'love') {
-      let loveTrack = lovePlaylist[Math.round(Math.random() * 20)].track;
+      let loveTrack = lovePlaylist[Math.round(Math.random() * 30)].track;
       let artists = loveTrack.artists;
       audio.src = loveTrack.preview_url;
       audio.dataset.name = loveTrack.name;
@@ -92,7 +92,7 @@ const loadPlaylist = async () => {
     }
     if (audio.className === 'inspirational') {
       let inspirationalTrack =
-        inspirationalPlaylist[Math.round(Math.random() * 20)].track;
+        inspirationalPlaylist[Math.round(Math.random() * 30)].track;
       let artists = inspirationalTrack.artists;
       audio.src = inspirationalTrack.preview_url;
       audio.dataset.name = inspirationalTrack.name;

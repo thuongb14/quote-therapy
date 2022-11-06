@@ -1,11 +1,41 @@
 {%extends "base.html"%} {%block style%}
 <link rel="stylesheet" href="/static/base.css" />
-<link rel="stylesheet" href="/static/sign-up.css" />
+<link rel="stylesheet" href="/static/log_in.css" />
+<link rel="stylesheet" href="/static/sign_up.css" />
+
 {%endblock style%} {%block title%}
 
-<title>Sign Up</title>
+<title>Sign up</title>
 {%endblock title%} {%block main%}
 <main>
-  
+  <section class="log-in-section">
+    <h3>Create an account</h3>
+    <form action="sign_up_action" method="POST" enctype="multipart/form-data">
+        <label for="name">
+            Name:
+            <input type="text" name="name" id="name">
+        </label>
+      <label for="email">
+        Email:
+        <input type="email" name="email" id="email" required />
+        {%if user == 'Email has been used' %}
+        <p style="color: red; margin: 0;">Email has been used</p>
+        {%endif%}
+      </label>
+      <label for="password"
+        >Password:
+        <input type="password" name="password" id="password" />
+      </label>
+      <label for="avatar">
+        Upload your avatar:
+        <input type="file" name="avatar" id="avatar">
+      </label>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="sign-up-section">
+        Have an account already?
+        <a href="/log_in"><button>Log in</button></a>
+      </div>
+  </section>
 </main>
 {%endblock main%}

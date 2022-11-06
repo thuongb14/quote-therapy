@@ -1,14 +1,15 @@
 from .database import sql_write, sql_select
+from flask import request
+
 import os
-from flask import request, redirect
 import bcrypt
+import cloudinary
+import cloudinary.uploader
 
 CLOUDINARY_CLOUD = os.environ.get('CLOUDINARY_CLOUD')
 CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')
 CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET')
 
-import cloudinary
-import cloudinary.uploader
 
 cloudinary.config(
     cloud_name = CLOUDINARY_CLOUD,

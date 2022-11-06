@@ -9,8 +9,10 @@ app.config['SECRET_KEY'] = 'super secret key'
 def index():
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar', 'Unknown')
+    user_id = session.get('user_id')
 
-    return render_template('index.html', user_name=user_name, user_avatar=user_avatar)
+
+    return render_template('index.html', user_id=user_id, user_name=user_name, user_avatar=user_avatar)
 
 @app.route('/dashboard')
 def dashboard():
@@ -18,19 +20,20 @@ def dashboard():
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar', 'Unknown')
     user_isAdmin = session.get('user_isAdmin')
+    user_id = session.get('user_id')
 
-    print(user_isAdmin)
 
     all_quotes = render_quotes()
 
-    return render_template('dashboard.html', all_quotes=all_quotes, user_isAdmin=user_isAdmin, user_name=user_name, user_avatar=user_avatar)
+    return render_template('dashboard.html',user_id=user_id, all_quotes=all_quotes, user_isAdmin=user_isAdmin, user_name=user_name, user_avatar=user_avatar)
 
 @app.route('/add_quote')
 def add_quote():
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar')
+    user_id = session.get('user_id')
 
-    return render_template('add_quote.html', user_name=user_name, user_avatar=user_avatar)
+    return render_template('add_quote.html', user_id=user_id, user_name=user_name, user_avatar=user_avatar)
 
 @app.route('/add_quote_action', methods=['POST'])
 def add_quote_action():
@@ -45,10 +48,11 @@ def delete_quote(id):
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar', 'Unknown')
     user_isAdmin = session.get('user_isAdmin')
+    user_id = session.get('user_id')
 
     quote = select_one_quote(id)
 
-    return render_template('delete_quote.html', quote=quote, user_isAdmin=user_isAdmin, user_name=user_name, user_avatar=user_avatar)
+    return render_template('delete_quote.html', user_id=user_id, quote=quote, user_isAdmin=user_isAdmin, user_name=user_name, user_avatar=user_avatar)
 
 @app.route('/delete_quote_action/<id>', methods=['POST'])
 def delete_quote_action(id):
@@ -62,9 +66,10 @@ def edit_quote(id):
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar', 'Unknown')
     user_isAdmin = session.get('user_isAdmin')
+    user_id = session.get('user_id')
 
     quote = select_one_quote(id)
-    return render_template('edit_quote.html', quote=quote, user_isAdmin=user_isAdmin, user_name=user_name, user_avatar=user_avatar)
+    return render_template('edit_quote.html', user_id=user_id, quote=quote, user_isAdmin=user_isAdmin, user_name=user_name, user_avatar=user_avatar)
 
 @app.route('/edit_quote_action/<id>', methods=['POST'])
 def edit_quote_action(id):
@@ -89,9 +94,11 @@ def log_in_action():
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar', 'Unknown')
     user_isAdmin = session.get('user_isAdmin')
+    user_id = session.get('user_id')
+
 
     if user == [] or user == 'Invalid Password':
-        return render_template('log_in.html', user=user, user_name=user_name, user_avatar=user_avatar, user_isAdmin=user_isAdmin)
+        return render_template('log_in.html', user_id=user_id, user=user, user_name=user_name, user_avatar=user_avatar, user_isAdmin=user_isAdmin)
     else:
         response = make_response(redirect('/'))
         # # response.set_cookie('user_name', user[2])
@@ -112,8 +119,9 @@ def log_out_action():
 def about():
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar')
+    user_id = session.get('user_id')
 
-    return render_template('about.html', user_name=user_name, user_avatar=user_avatar)
+    return render_template('about.html', user_id=user_id, user_name=user_name, user_avatar=user_avatar)
     
 
 @app.route('/sign_up')
@@ -121,7 +129,9 @@ def sign_up():
     
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar')
-    return render_template('sign_up.html', user_name=user_name, user_avatar=user_avatar)
+    user_id = session.get('user_id')
+
+    return render_template('sign_up.html', user_id=user_id, user_name=user_name, user_avatar=user_avatar)
     
 @app.route('/sign_up_action', methods=['POST'])
 def sign_up_action():
@@ -129,13 +139,22 @@ def sign_up_action():
 
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar')
+    user_id = session.get('user_id')
+
 
     if user == 'Email has been used':
-        return render_template('sign_up.html', user_name=user_name, user_avatar=user_avatar, user=user)
+        return render_template('sign_up.html',  user_id=user_id, user_name=user_name, user_avatar=user_avatar, user=user)
     else:
         response = redirect('/log_in')
         return response
 
+@app.route('/profile/<id>')
+def profile(id):
+    user_name = session.get('user_name', 'Unknown')
+    user_avatar = session.get('user_avatar')
+    user_id = session.get('user_id')
+
+    return render_template('profile.html', user_id=user_id, user_name=user_name, user_avatar=user_avatar)
 
 if __name__ == '__main__':
     # Import the variables from the .env file

@@ -11,7 +11,7 @@ Simple project to share & look for cheerup quotes. The project was created for G
 ## Preview
 
 ## Description
-Quote Therapy is a website to share and look for quotes that can help you to cheerup. But does only quote enough to cheer you up? Music has long been known to help people to heal, so each quote shared will be categorised with a different mood and each mood will have a different Lofi track for you to listen to and relax. How you feel matters and Quote Therapy exists to help you cope with stress and negative thoughts.
+Quote Therapy is a website to share and look for quotes that can help you to cheerup. But does only quote enough to cheer you up? Music has long been known to help people to heal, so each quote shared will be categorised with a different mood and each mood will have a different Lofi track for you to listen to and relax. How you feel matters and Quote Therapy exists to help you cope up with stress and negative thoughts.
 
 ## Technologies
 * Javascript

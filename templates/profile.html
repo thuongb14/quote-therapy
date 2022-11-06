@@ -1,10 +1,48 @@
 {%extends "base.html"%} {%block style%}
 <link rel="stylesheet" href="/static/base.css" />
+<link rel="stylesheet" href="/static/profile.css" />
+<link rel="stylesheet" href="/static/dashboard.css" />
+
 {%endblock style%} {%block title%}
 
 <title>Profile</title>
 {%endblock title%} {%block main%}
 <main>
-  pprofile
+  <section class="profile-section">
+    <img src="{{user_avatar}}" alt="profile-avatar" class="profile-avatar">
+<div class="profile-info">
+    <div class="profile-name">
+        {{user_name}}
+    </div>
+    <div class="profile-email">
+        {{user_email}}
+    </div>
+</div>
+
+    </div>
+
+  </section>
+  <h3>Quotes you have shared</h3>
+  <section class="second-section">
+    {%if quotes == []%}
+
+    <img src="https://static.vecteezy.com/system/resources/previews/004/968/515/original/no-file-or-data-found-in-the-folder-concept-illustration-flat-design-eps10-simple-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg" alt="">
+
+    {%else%}
+
+    {%for quote in quotes%}
+
+    <div id="quote" class="{{quote['mood']}}">
+        <img class="quote-image" src="{{quote['image_url']}}" alt="quote image" />
+        <p style="font-weight: bold" class="content">{{quote['content']}}</p>
+        <div class="button-controls">
+            <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
+            <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
+          </div>
+    </div>
+    {%endfor%}
+    {%endif%}
+
+  </section>
 </main>
 {%endblock main%}

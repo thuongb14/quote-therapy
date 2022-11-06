@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+.profile-name {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+main {
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Albert Sans', sans-serif;
+}

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, make_response, session
-from models.quotes import check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
+from models.quotes import render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'super secret key'
@@ -103,6 +103,7 @@ def log_in_action():
         response = make_response(redirect('/'))
         # # response.set_cookie('user_name', user[2])
         session['user_name'] = user[1]
+        session['user_email'] = f'{user[2]}'
         session['user_id'] = user[0]
         session['user_avatar'] = user[4]
         session['user_isAdmin'] = user[5]
@@ -153,8 +154,11 @@ def profile(id):
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar')
     user_id = session.get('user_id')
+    user_email = session.get('user_email')
 
-    return render_template('profile.html', user_id=user_id, user_name=user_name, user_avatar=user_avatar)
+    quotes = render_user_quotes()
+    print(quotes)
+    return render_template('profile.html', quotes=quotes, user_email=user_email, user_id=user_id, user_name=user_name, user_avatar=user_avatar)
 
 if __name__ == '__main__':
     # Import the variables from the .env file

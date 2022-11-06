@@ -1,5 +1,5 @@
 from .database import sql_write, sql_select
-from flask import request
+from flask import request, session
 
 import os
 import bcrypt
@@ -18,6 +18,8 @@ cloudinary.config(
 )
 
 def insert_quote():
+    user_id = session.get('user_id')
+
     content = request.form.get('content')
     mood = request.form.get('mood')
     image_url = request.files['image']
@@ -26,10 +28,10 @@ def insert_quote():
     response = cloudinary.uploader.upload(image_url, filename=image_url.filename)
     image_url = response['secure_url']
 
-    return sql_write('INSERT INTO quotes(content, image_url, mood) VALUES (%s, %s, %s)', [content, image_url, mood])
+    return sql_write('INSERT INTO quotes(content, image_url, mood, user_id) VALUES (%s, %s, %s, %s)', [content, image_url, mood, user_id])
 
 def render_quotes():
-    results = sql_select('SELECT id, content, image_url, mood FROM quotes ORDER BY id')
+    results = sql_select('SELECT id, content, image_url, mood FROM quotes ORDER BY id DESC')
     
     all_quotes = []
 
@@ -108,5 +110,15 @@ def check_sign_up():
         return 'Email has been used'
     else:
         return sql_write('INSERT INTO users (name, email,  password, avatar) VALUES (%s, %s, %s, %s)', [name, email, password_hash, avatar])
+
+def render_user_quotes():
+    user_id = session.get('user_id')
+    results = sql_select('SELECT quotes.id, image_url, content FROM quotes INNER JOIN users ON quotes.user_id = users.id WHERE quotes.user_id = %s',[user_id])
+    all_quotes = []
+    for row in results:
+        id, image_url, content = row
+        quote = {'id': id, 'image_url': image_url,'content': content}
+        all_quotes.append(quote)
+    return all_quotes
 
 

@@ -66,15 +66,18 @@ a:hover {
 }
 
 main {
-  min-height: 500px;
+  min-height: 100vh;
 }
 
 footer {
-  margin-top: auto;
+  position:fixed;
+  bottom:0;
+  width: 100vw;
   background-color: #d5eb98;
   color: grey;
   padding: 0.3rem;
   font-size: 12px;
+  text-align: center;
 }
 
 .user-name {

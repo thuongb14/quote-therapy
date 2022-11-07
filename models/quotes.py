@@ -31,23 +31,23 @@ def insert_quote():
     return sql_write('INSERT INTO quotes(content, image_url, mood, user_id) VALUES (%s, %s, %s, %s)', [content, image_url, mood, user_id])
 
 def render_quotes():
-    results = sql_select('SELECT id, content, image_url, mood FROM quotes ORDER BY id DESC')
+    results = sql_select('SELECT id, content, image_url, mood, user_id FROM quotes ORDER BY id DESC')
     
     all_quotes = []
 
     for row in results:
-        id, content, image_url, mood = row
-        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood}
+        id, content, image_url, mood, user_id = row
+        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id':user_id}
         all_quotes.append(quote)
 
     return all_quotes
 
 def select_one_quote(id):
-    results = sql_select('SELECT id, content from quotes WHERE id = %s', [id])
+    results = sql_select('SELECT id, content, user_id from quotes WHERE id = %s', [id])
 
     for row in results:
-        id, content = row
-        quote = {'id': id,'content': content}
+        id, content, user_id = row
+        quote = {'id': id,'content': content, 'user_id': user_id}
     return quote
 
 def delete_one_quote(id):
@@ -72,7 +72,6 @@ def get_user(email):
         for row in results:
             id, name, email, password, avatar, isAdmin = row
             user = [id, name, email, password, avatar, isAdmin]
-        print(user[5])
     return user
 
 def check_log_in():
@@ -121,4 +120,14 @@ def render_user_quotes():
         all_quotes.append(quote)
     return all_quotes
 
+def edit_profile_info(user_id):
+    name = request.form.get('name')
+    description = request.form.get('description')
 
+    editted_avatar = request.files['avatar']
+    response = cloudinary.uploader.upload(editted_avatar)
+    editted_avatar = response['secure_url']
+
+    print(name, editted_avatar, description, user_id)
+
+    return sql_write('UPDATE users SET name = %s, avatar = %s, description = %s WHERE id = %s', [name, editted_avatar, description, user_id])

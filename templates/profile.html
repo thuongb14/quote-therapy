@@ -7,26 +7,28 @@
 
 <title>Profile</title>
 {%endblock title%} {%block main%}
+{%if user_name != 'Unknown'%}
 <main>
   <section class="profile-section">
-    <img src="{{user_avatar}}" alt="profile-avatar" class="profile-avatar">
-<div class="profile-info">
-    <div class="profile-name">
-        {{user_name}}
-    </div>
-    <div class="profile-email">
-        {{user_email}}
-    </div>
-</div>
+    <a href="/edit_profile_info/{{user_id}}"><img src="{{user_avatar}}" alt="profile-avatar" class="profile-avatar"></a>
+    <div class="profile-info">
+      <div class="profile-name">
+          {{user_name}}
+      </div>    
+      <div class="profile-email">
+          {{user_email}}
+      </div>
+      <a href="/log_out_action"><button class="log-out">Log Out</button></a>
+  </div>
 
     </div>
 
   </section>
-  <h3>Quotes you have shared</h3>
+  <h3>Quotes shared</h3>
   <section class="second-section">
     {%if quotes == []%}
 
-    <img src="https://static.vecteezy.com/system/resources/previews/004/968/515/original/no-file-or-data-found-in-the-folder-concept-illustration-flat-design-eps10-simple-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg" alt="">
+    <a href="/add_quote"><img src="https://static.vecteezy.com/system/resources/previews/004/968/515/original/no-file-or-data-found-in-the-folder-concept-illustration-flat-design-eps10-simple-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg" alt=""></a>
 
     {%else%}
 
@@ -35,7 +37,8 @@
     <div id="quote" class="{{quote['mood']}}">
         <img class="quote-image" src="{{quote['image_url']}}" alt="quote image" />
         <p style="font-weight: bold" class="content">{{quote['content']}}</p>
-        <div class="button-controls">
+        
+        <div class="button-controls" id="{{quote['id']}}" >
             <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
             <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
           </div>
@@ -45,4 +48,5 @@
 
   </section>
 </main>
+{%endif%}
 {%endblock main%}

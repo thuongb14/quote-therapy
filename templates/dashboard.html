@@ -64,10 +64,10 @@
             clip-rule="evenodd" />
         </symbol>
       </svg>
-      {%if user_isAdmin == True%}
+      {%if user_isAdmin == True or quote['user_id'] == user_id%}
       <div class="button-controls">
-        <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
         <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
+        <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
       </div>
       {%endif%}
     </div>

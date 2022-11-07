@@ -4,6 +4,8 @@
 {%endblock style%} {%block title%}
 <title>Delete Quote</title>
 {%endblock title%} {%block main%}
+{%if user_name != 'Unknown'%}
+{%if quote['user_id'] == user_id%}
 <main>
   <div class="modal">
     <div class="confirm">
@@ -23,4 +25,6 @@
     </div>
   </div>
 </main>
+{%endif%}
+{%endif%}
 {%endblock main%}

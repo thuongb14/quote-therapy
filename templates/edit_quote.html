@@ -5,6 +5,8 @@
 
 <title>Edit quote</title>
 {%endblock title%} {%block main%}
+{%if user_name != 'Unknown'%}
+{%if quote['user_id'] == user_id%}
 <main>
   <section class="first-section">
     <h4>Edit quote</h4>
@@ -42,4 +44,6 @@
     </form>
   </section>
 </main>
+{%endif%}
+{%endif%}
 {%endblock main%}

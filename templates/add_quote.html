@@ -5,6 +5,7 @@
 
 <title>Add your quote</title>
 {%endblock title%} {%block main%}
+{%if user_name != 'Unknown'%}
 <main>
   <section class="first-section">
     <h4>Add your quote</h4>
@@ -41,4 +42,5 @@
     </form>
   </section>
 </main>
+{%endif%}
 {%endblock main%}

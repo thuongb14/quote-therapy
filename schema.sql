@@ -7,6 +7,7 @@ CREATE TABLE users (
     email TEXT,
     password TEXT,
     avatar TEXT,
+    description TEXT,
     isAdmin BOOLEAN
 );
 

@@ -9,7 +9,7 @@
 <main>
   <section class="first-section">
     <h4>You'll find the quote you need. Hit play, relax...</h4>
-    {%if user_name != 'Unknown'%}
+    {%if user_cookie['user_name'] != 'Unknown'%}
     <button><a href="/add_quote">Add your quote</a></button>
     {%endif%}
   </section>
@@ -64,7 +64,7 @@
             clip-rule="evenodd" />
         </symbol>
       </svg>
-      {%if user_isAdmin == True or quote['user_id'] == user_id%}
+      {%if user_cookie['user_isAdmin'] == True or quote['user_id'] == user_cookie['user_id']%}
       <div class="button-controls">
         <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
         <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>

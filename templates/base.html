@@ -34,11 +34,11 @@
         </nav>
       </div>
 
-      {%if user_name != 'Unknown'%}
+      {%if user_cookie['user_name'] != 'Unknown'%}
       <div class="right-header">
-        <div class="user-name">{{user_name}}</div>
+        <div class="user-name">{{user_cookie['user_name']}}</div>
         <div>
-          <a href="/profile/{{user_id}}"><img class="user-avatar" src="{{user_avatar}}" alt="user-avatar" /></a>
+          <a href="/profile/{{user_cookie['user_id']}}"><img class="user-avatar" src="{{user_cookie['user_avatar']}}" alt="user-avatar" /></a>
         </div>
       </div>
       {%endif%}

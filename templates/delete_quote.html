@@ -4,8 +4,8 @@
 {%endblock style%} {%block title%}
 <title>Delete Quote</title>
 {%endblock title%} {%block main%}
-{%if user_name != 'Unknown'%}
-{%if quote['user_id'] == user_id%}
+{%if user_cookie['user_name']!= 'Unknown'%}
+{%if quote['user_id'] == user_cookie['user_id'] or user_cookie['user_isAdmin'] == True%}
 <main>
   <div class="modal">
     <div class="confirm">

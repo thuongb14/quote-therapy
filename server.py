@@ -1,9 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, make_response, session
-from models.quotes import get_cookie, set_cookie, get_user, edit_profile_info, render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
+from models.quotes import get_cookie, set_cookie_session, get_user, change_profile_info, render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'super secret key'
-
 
 @app.route('/')
 def index():
@@ -78,11 +77,12 @@ def log_in_action():
     user_cookie = get_cookie()
 
     if user == [] or user == 'Invalid Password':
-        return render_template('log_in.html', user_cookie=user_cookie)
+        return render_template('log_in.html', user=user, user_cookie=user_cookie)
     else:
         response = make_response(redirect('/'))
         # # response.set_cookie('user_name', user[2])
-        set_cookie(user)
+        set_cookie_session(user)
+
         return response
 
 @app.route('/log_out_action')
@@ -131,21 +131,20 @@ def edit_profile_info(user_id):
 
     return render_template('edit_profile_info.html', user_cookie=user_cookie)
 
-@app.route('/edit_profile_info_action', methods=['POST'])
-def edit_profile_info_action():
+@app.route('/edit_profile_info_action/<user_id>', methods=['POST'])
+def edit_profile_info_action(user_id):
+
     user_cookie = get_cookie()
 
-    edit_profile_info(user_cookie['user_id'])
+    change_profile_info(user_id)
 
     response = make_response(redirect('/'))
-    
-    response.delete_cookie('session')
 
     user = get_user(user_cookie['user_email'])
 
-    set_cookie(user)
+    response.delete_cookie('session')
 
-    print(user)
+    set_cookie_session(user)
 
     return response
 

@@ -120,19 +120,20 @@ def render_user_quotes():
         all_quotes.append(quote)
     return all_quotes
 
-def edit_profile_info(user_id):
+def change_profile_info(user_id):
     name = request.form.get('name')
     description = request.form.get('description')
     editted_avatar = request.files['avatar']
-    response = cloudinary.uploader.upload(editted_avatar)
+
+    response = cloudinary.uploader.upload(editted_avatar, filename=editted_avatar.filename)
     editted_avatar = response['secure_url']
 
     return sql_write('UPDATE users SET name = %s, avatar = %s, description = %s WHERE id = %s', [name, editted_avatar, description, user_id])
 
-def set_cookie(user):
+def set_cookie_session(user):
+    session['user_id'] = f'{user[0]}'
     session['user_name'] = user[1]
-    session['user_email'] = f'{user[2]}'
-    session['user_id'] = user[0]
+    session['user_email'] = user[2]
     session['user_avatar'] = user[4]
     session['user_isAdmin'] = user[5]
 

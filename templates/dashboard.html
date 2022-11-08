@@ -64,7 +64,7 @@
             clip-rule="evenodd" />
         </symbol>
       </svg>
-      {%if quote['user_id'] == user_cookie['user_id'] or user_cookie[isAdmin] == True%}
+      {%if quote['user_id'] == user_cookie['user_id'] or user_cookie['isAdmin'] == True%}
       <div class="button-controls">
         <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
         <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>

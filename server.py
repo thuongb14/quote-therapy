@@ -118,7 +118,7 @@ def sign_up_action():
     user_cookie = get_cookie()
 
     if user == 'Email has been used':
-        return render_template('sign_up.html', user_cookie=user_cookie)
+        return render_template('sign_up.html', user_cookie=user_cookie, user=user)
     else:
         response = redirect('/log_in')
         return response

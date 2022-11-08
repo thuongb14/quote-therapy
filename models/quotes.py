@@ -99,7 +99,7 @@ def check_sign_up():
     avatar = request.files['avatar']
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
-    response = cloudinary.uploader.upload(avatar)
+    response = cloudinary.uploader.upload(avatar, filename=avatar.filename)
     avatar = response['secure_url']
 
     all_emails = []

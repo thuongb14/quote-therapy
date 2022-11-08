@@ -33,7 +33,7 @@ Elements in dashboard:
 * Audio control for each quote - The tracks are fetched from Spotify API, but can only play the preview version which is for 29 seconds.
 * Image click to show details of the quote.
 
-## About Us:
+### About Us:
 
 
 

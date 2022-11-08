@@ -6,9 +6,9 @@ import bcrypt
 import cloudinary
 import cloudinary.uploader
 
-CLOUDINARY_CLOUD = os.environ.get('CLOUDINARY_CLOUD')
-CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')
-CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET')
+CLOUDINARY_CLOUD = os.environ.get('dqlrkabpl')
+CLOUDINARY_API_KEY = os.environ.get('954945524493647')
+CLOUDINARY_API_SECRET = os.environ.get('RL-IVbpEGMvVfyZOQYQDwSgcNGs')
 
 
 cloudinary.config(

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, make_response
+from flask import Flask, render_template, redirect, url_for, make_response, session
 from models.quotes import get_cookie, set_cookie_session, get_user, change_profile_info, render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
 app = Flask(__name__)
 
@@ -15,8 +15,11 @@ def dashboard():
 
     user_cookie = get_cookie()
 
+    print(type(user_cookie['user_id']))
+
     all_quotes = render_quotes()
 
+    print(all_quotes)
     return render_template('dashboard.html', all_quotes=all_quotes, user_cookie=user_cookie)
 
 @app.route('/add_quote')
@@ -148,9 +151,10 @@ def edit_profile_info_action(user_id):
 
     return response
 
-@app.route('/user_profile/<id>')
-def user_profile(id):
-    return render_template('user_profile.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Import the variables from the .env file
+    from dotenv import load_dotenv
+    # Start the server
+
+app.run(debug=True)

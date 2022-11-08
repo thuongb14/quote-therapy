@@ -29,7 +29,7 @@
   <section class="second-section">
     {%for quote in all_quotes%}
     <div id="quote" class="{{quote['mood']}}">
-      <img class="quote-image" data-name="{{quote['name']}}" src="{{quote['image_url']}}" alt="quote image" />
+      <img class="quote-image" src="{{quote['image_url']}}" alt="quote image" />
       <p style="font-weight: bold" class="content">{{quote['content']}}</p>
 
       <div class="audio-player">
@@ -64,7 +64,7 @@
             clip-rule="evenodd" />
         </symbol>
       </svg>
-      {%if user_cookie['user_isAdmin'] == True or quote['user_id'] == user_cookie['user_id']%}
+      {%if quote['user_id'] == user_cookie['user_id'] or user_cookie[isAdmin] == True%}
       <div class="button-controls">
         <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
         <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>

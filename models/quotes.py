@@ -31,13 +31,13 @@ def insert_quote():
     return sql_write('INSERT INTO quotes(content, image_url, mood, user_id) VALUES (%s, %s, %s, %s)', [content, image_url, mood, user_id])
 
 def render_quotes():
-    results = sql_select('SELECT quotes.id, content, image_url, mood, user_id, name FROM quotes INNER JOIN users ON quotes.id = users.id ORDER BY id DESC')
+    results = sql_select('SELECT id, content, image_url, mood, user_id FROM quotes ORDER BY id DESC')
     
     all_quotes = []
 
     for row in results:
-        id, content, image_url, mood, user_id, name = row
-        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id':user_id, 'name': name}
+        id, content, image_url, mood, user_id = row
+        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id': f'{user_id}'}
         all_quotes.append(quote)
 
     return all_quotes
@@ -47,7 +47,7 @@ def select_one_quote(id):
 
     for row in results:
         id, content, user_id = row
-        quote = {'id': id,'content': content, 'user_id': user_id}
+        quote = {'id': id,'content': content, 'user_id': f'{user_id}'}
     return quote
 
 def delete_one_quote(id):
@@ -147,4 +147,3 @@ def get_cookie():
     user_cookie = {'user_name': user_name, 'user_avatar': user_avatar, 'user_id': user_id, 'user_email': user_email, 'user_isAdmin': user_isAdmin}
     
     return user_cookie
-

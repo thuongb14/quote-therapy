@@ -1,5 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, make_response, session
 from models.quotes import get_cookie, set_cookie_session, get_user, change_profile_info, render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
+
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'super secret key'
@@ -155,5 +157,6 @@ def edit_profile_info_action(user_id):
 if __name__ == '__main__':
     # Import the variables from the .env file
     from dotenv import load_dotenv
+    load_dotenv()
     # Start the server
     app.run(debug=True)

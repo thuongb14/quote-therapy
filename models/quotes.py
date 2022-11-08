@@ -147,3 +147,4 @@ def get_cookie():
     user_cookie = {'user_name': user_name, 'user_avatar': user_avatar, 'user_id': user_id, 'user_email': user_email, 'user_isAdmin': user_isAdmin}
     
     return user_cookie
+

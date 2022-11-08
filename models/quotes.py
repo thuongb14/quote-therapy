@@ -1,10 +1,15 @@
 from .database import sql_write, sql_select
 from flask import request, session
+from dotenv import load_dotenv, find_dotenv
 
 import os
 import bcrypt
 import cloudinary
 import cloudinary.uploader
+
+
+env_file = find_dotenv(".env")
+load_dotenv(env_file)
 
 CLOUDINARY_CLOUD = os.environ.get('CLOUDINARY_CLOUD')
 CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')

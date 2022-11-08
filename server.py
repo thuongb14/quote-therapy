@@ -156,7 +156,5 @@ def edit_profile_info_action(user_id):
 
 if __name__ == '__main__':
     # Import the variables from the .env file
-    from dotenv import load_dotenv
-    load_dotenv()
     # Start the server
     app.run(debug=True)

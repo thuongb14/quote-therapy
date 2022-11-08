@@ -169,7 +169,7 @@ imagesQuote.forEach((quote) => {
     </p>
     <p class="track-artist">Artist: ${quote.nextElementSibling.nextElementSibling.firstElementChild.dataset.artist}
     </p>
-    <p>Posted by ${quote.dataset.avatar}
+    <p>Posted by <span style="color: blue"><a href="#">${quote.dataset.name}</a></span>
     </p>
     `;
   });

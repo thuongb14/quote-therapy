@@ -148,6 +148,9 @@ def edit_profile_info_action(user_id):
 
     return response
 
+@app.route('/user_profile/<id>')
+def user_profile(id):
+    return render_template('user_profile.html')
 
 if __name__ == '__main__':
     # Import the variables from the .env file

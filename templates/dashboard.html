@@ -29,7 +29,7 @@
   <section class="second-section">
     {%for quote in all_quotes%}
     <div id="quote" class="{{quote['mood']}}">
-      <img class="quote-image" data-avatar="{{quote['user_id']}}" src="{{quote['image_url']}}" alt="quote image" />
+      <img class="quote-image" data-name="{{quote['name']}}" src="{{quote['image_url']}}" alt="quote image" />
       <p style="font-weight: bold" class="content">{{quote['content']}}</p>
 
       <div class="audio-player">

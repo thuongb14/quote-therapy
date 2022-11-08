@@ -31,13 +31,13 @@ def insert_quote():
     return sql_write('INSERT INTO quotes(content, image_url, mood, user_id) VALUES (%s, %s, %s, %s)', [content, image_url, mood, user_id])
 
 def render_quotes():
-    results = sql_select('SELECT id, content, image_url, mood, user_id FROM quotes ORDER BY id DESC')
+    results = sql_select('SELECT quotes.id, content, image_url, mood, user_id, name FROM quotes INNER JOIN users ON quotes.id = users.id ORDER BY id DESC')
     
     all_quotes = []
 
     for row in results:
-        id, content, image_url, mood, user_id = row
-        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id':user_id}
+        id, content, image_url, mood, user_id, name = row
+        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id':user_id, 'name': name}
         all_quotes.append(quote)
 
     return all_quotes

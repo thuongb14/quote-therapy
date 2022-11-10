@@ -34,8 +34,16 @@
     <div id="quote" class="{{quote['mood']}}">
         <img class="quote-image" src="{{quote['image_url']}}" alt="quote image" />
         <p style="font-weight: bold" class="content">{{quote['content']}}</p>
+        {%if user_cookie['user_isAdmin'] == True%}
+    <div class="button-controls">
+      <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
+      <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
     </div>
+    {%endif%}
+    </div>
+
     {%endfor%}
+    
 
   </section>
 </main>

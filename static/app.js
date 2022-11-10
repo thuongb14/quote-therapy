@@ -141,7 +141,7 @@ if (audioPlayers.length) {
 }
 
 //Search function
-search.addEventListener('click', () => {
+search.addEventListener('click', (e) => {
   let input = document.querySelector('.searchTerm').value.toLowerCase();
   quotes.forEach((quote) => {
     if (quote.className !== input) {
@@ -153,6 +153,8 @@ search.addEventListener('click', () => {
       quote.style = 'display: ';
     }
   });
+
+  e.preventDefault()
 });
 
 const imagesQuote = document.querySelectorAll('.quote-image');
@@ -169,8 +171,8 @@ imagesQuote.forEach((quote) => {
     </p>
     <p class="track-artist">Artist: ${quote.nextElementSibling.nextElementSibling.firstElementChild.dataset.artist}
     </p>
-    <p>Posted by
-    </p>
+    <p>Posted by <a href='/user_profile/${quote.dataset.id}'>${quote.dataset.name}</a></p>
+
     `;
   });
 });

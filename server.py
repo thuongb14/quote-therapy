@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, make_response, session
-from models.quotes import get_cookie, set_cookie_session, get_user, change_profile_info, render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
+from models.quotes import get_profile_user, get_cookie, set_cookie_session, get_user, change_profile_info, render_user_quotes, check_sign_up, check_log_in, edit_one_quote, delete_one_quote, insert_quote, render_quotes, select_one_quote
 
 
 app = Flask(__name__)
@@ -152,6 +152,14 @@ def edit_profile_info_action(user_id):
     set_cookie_session(user)
 
     return response
+
+@app.route('/user_profile/<id>')
+def user_profile(id):
+    user_cookie = get_cookie()
+
+    user = get_profile_user(id)
+
+    return render_template('user_profile.html', user_cookie=user_cookie, user=user)
 
 
 if __name__ == '__main__':

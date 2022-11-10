@@ -36,13 +36,13 @@ def insert_quote():
     return sql_write('INSERT INTO quotes(content, image_url, mood, user_id) VALUES (%s, %s, %s, %s)', [content, image_url, mood, user_id])
 
 def render_quotes():
-    results = sql_select('SELECT id, content, image_url, mood, user_id FROM quotes ORDER BY id DESC')
+    results = sql_select('SELECT quotes.id, content, image_url, mood, user_id, name FROM quotes INNER JOIN users ON quotes.user_id = users.id ORDER BY quotes.id DESC')
     
     all_quotes = []
 
     for row in results:
-        id, content, image_url, mood, user_id = row
-        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id': f'{user_id}'}
+        id, content, image_url, mood, user_id, name = row
+        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id': f'{user_id}', 'name': name}
         all_quotes.append(quote)
 
     return all_quotes
@@ -143,6 +143,7 @@ def set_cookie_session(user):
     session['user_isAdmin'] = user[5]
 
 def get_cookie():
+
     user_name = session.get('user_name', 'Unknown')
     user_avatar = session.get('user_avatar', 'Unknown')
     user_id = session.get('user_id', 'Unknown')
@@ -152,3 +153,13 @@ def get_cookie():
     user_cookie = {'user_name': user_name, 'user_avatar': user_avatar, 'user_id': user_id, 'user_email': user_email, 'user_isAdmin': user_isAdmin}
     
     return user_cookie
+
+def get_profile_user(id):
+    results = sql_select('SELECT id, name, email, avatar, description FROM users WHERE id = %s', [id])
+    for row in results:
+        id, name, email, avatar, description = row
+        user = {'id': id, 'name': name, 'email': email, 'avatar': avatar, 'description': description}
+    return user
+
+def get_profile_quotes(id):
+    

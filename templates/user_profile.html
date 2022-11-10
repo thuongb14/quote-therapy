@@ -7,16 +7,15 @@
 
 <title>Profile</title>
 {%endblock title%} {%block main%}
-{%if user_cookie['user_name'] != 'Unknown'%}
 <main>
   <section class="profile-section">
-    <img src="{{user_cookie['user_avatar']}}" alt="profile-avatar" class="profile-avatar"></a>
+    <img src="{{user['avatar']}}" alt="profile-avatar" class="profile-avatar"></a>
     <div class="profile-info">
       <div class="profile-name">
-          {{user_cookie['user_name']}}
+          {{user['name']}}
       </div>    
       <div class="profile-email">
-        {{user_cookie['user_email']}}
+        {{user['email']}}
       </div>
       <a href="/log_out_action"><button class="log-out">Log Out</button></a>
     </div>
@@ -48,5 +47,4 @@
 
   </section>
 </main>
-{%endif%}
 {%endblock main%}

@@ -14,14 +14,10 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-
     user_cookie = get_cookie()
-
-    print(type(user_cookie['user_id']))
 
     all_quotes = render_quotes()
 
-    print(all_quotes)
     return render_template('dashboard.html', all_quotes=all_quotes, user_cookie=user_cookie)
 
 @app.route('/add_quote')
@@ -32,14 +28,12 @@ def add_quote():
 
 @app.route('/add_quote_action', methods=['POST'])
 def add_quote_action():
-
     insert_quote()
 
     return redirect(url_for('dashboard'))
 
 @app.route('/delete_quote/<id>')
 def delete_quote(id):
-
     user_cookie = get_cookie()
 
     quote = select_one_quote(id)
@@ -54,7 +48,6 @@ def delete_quote_action(id):
 
 @app.route('/edit_quote/<id>')
 def edit_quote(id):
-
     user_cookie = get_cookie()
 
     quote = select_one_quote(id)
@@ -69,14 +62,12 @@ def edit_quote_action(id):
 
 @app.route('/log_in')
 def log_in():
-
     user_cookie = get_cookie()
 
     return render_template('log_in.html', user_cookie=user_cookie)
 
 @app.route('/log_in_action', methods=['POST'])
 def log_in_action():
-
     user = check_log_in()
 
     user_cookie = get_cookie()
@@ -106,7 +97,6 @@ def about():
 
 @app.route('/sign_up')
 def sign_up():
-    
     user_cookie = get_cookie()
 
     return render_template('sign_up.html', user_cookie=user_cookie)
@@ -138,7 +128,6 @@ def edit_profile_info(user_id):
 
 @app.route('/edit_profile_info_action/<user_id>', methods=['POST'])
 def edit_profile_info_action(user_id):
-
     user_cookie = get_cookie()
 
     change_profile_info(user_id)

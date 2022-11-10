@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 .logo {
   font-family: 'Pacifico', cursive;
   font-size: 35px;
@@ -92,4 +93,19 @@ footer {
 
 .user-avatar:hover {
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 25px;
+  }
+  
+  .left-header {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  h2 {
+    font-size: 25px;
+  }
+
 }

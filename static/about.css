@@ -14,6 +14,7 @@
 
 h3 {
   font-family: 'Pacifico', cursive;
+  text-align: center;
 }
 
 .text-content {
@@ -24,5 +25,40 @@ h3 {
 }
 
 .second-section {
-  height: 500px;
+  margin: 3rem;
+}
+.blog-posts {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+
+}
+
+.blog {
+  background-color: rgb(236, 236, 236);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 320px;
+  height: 450px;
+  font-family: 'Albert Sans', sans-serif;
+  text-align: center;
+  cursor: pointer
+}
+
+.blog-image {
+  width: 320px;
+  height: 200px;
+  margin-bottom: 2rem;
+}
+
+.blog-title {
+  height: 80px;
+}
+
+.blog-preview {
+  margin: 0 2rem;
 }

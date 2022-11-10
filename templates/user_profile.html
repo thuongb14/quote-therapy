@@ -17,7 +17,11 @@
       <div class="profile-email">
         {{user['email']}}
       </div>
-      <a href="/log_out_action"><button class="log-out">Log Out</button></a>
+      {%if user['description'] != None%}
+      <div class="profile-description">
+        {{user['description']}}
+      </div>
+      {%endif%}
     </div>
 
     </div>
@@ -25,25 +29,13 @@
   </section>
   <h3>Quotes shared</h3>
   <section class="second-section">
-    {%if quotes == []%}
-
-    <a href="/add_quote"><img src="https://static.vecteezy.com/system/resources/previews/004/968/515/original/no-file-or-data-found-in-the-folder-concept-illustration-flat-design-eps10-simple-modern-graphic-element-for-landing-page-empty-state-ui-infographic-icon-vector.jpg" alt=""></a>
-
-    {%else%}
-
     {%for quote in quotes%}
 
     <div id="quote" class="{{quote['mood']}}">
         <img class="quote-image" src="{{quote['image_url']}}" alt="quote image" />
         <p style="font-weight: bold" class="content">{{quote['content']}}</p>
-        
-        <div class="button-controls" id="{{quote['id']}}" >
-            <button><a href="/delete_quote/{{quote['id']}}">Delete</a></button>
-            <button><a href="/edit_quote/{{quote['id']}}">Edit</a></button>
-          </div>
     </div>
     {%endfor%}
-    {%endif%}
 
   </section>
 </main>

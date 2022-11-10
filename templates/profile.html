@@ -18,13 +18,18 @@
       <div class="profile-email">
         {{user_cookie['user_email']}}
       </div>
+      {%if user_cookie['user_description'] != None%}
+      <div class="profile-description">
+        {{user_cookie['user_description']}}
+      </div>
+      {%endif%}
       <a href="/log_out_action"><button class="log-out">Log Out</button></a>
   </div>
 
     </div>
 
   </section>
-  <h3>Quotes shared</h3>
+  <h3>Quotes you have shared</h3>
   <section class="second-section">
     {%if quotes == []%}
 

@@ -70,13 +70,13 @@ def edit_one_quote(id):
     return sql_write('UPDATE quotes SET content = %s, image_url = %s, mood= %s WHERE id = %s', [content, image_url, mood, id])
     
 def get_user(email):
-    results = sql_select('SELECT id, name, email, password, avatar, isAdmin FROM users WHERE email = %s', [email])
+    results = sql_select('SELECT id, name, email, password, avatar, isAdmin, description FROM users WHERE email = %s', [email])
     if results == []:
         user = []
     else:
         for row in results:
-            id, name, email, password, avatar, isAdmin = row
-            user = [id, name, email, password, avatar, isAdmin]
+            id, name, email, password, avatar, isAdmin, description = row
+            user = [id, name, email, password, avatar, isAdmin, description]
     return user
 
 def check_log_in():
@@ -141,6 +141,8 @@ def set_cookie_session(user):
     session['user_email'] = user[2]
     session['user_avatar'] = user[4]
     session['user_isAdmin'] = user[5]
+    session['user_description'] = user[6]
+
 
 def get_cookie():
 
@@ -149,8 +151,9 @@ def get_cookie():
     user_id = session.get('user_id', 'Unknown')
     user_email = session.get('user_email', 'Unknown')
     user_isAdmin = session.get('user_isAdmin', 'Unknown')
+    user_description = session.get('user_description', 'Unknown')
     
-    user_cookie = {'user_name': user_name, 'user_avatar': user_avatar, 'user_id': user_id, 'user_email': user_email, 'user_isAdmin': user_isAdmin}
+    user_cookie = {'user_name': user_name, 'user_avatar': user_avatar, 'user_id': user_id, 'user_email': user_email, 'user_isAdmin': user_isAdmin, 'user_description': user_description}
     
     return user_cookie
 
@@ -159,7 +162,16 @@ def get_profile_user(id):
     for row in results:
         id, name, email, avatar, description = row
         user = {'id': id, 'name': name, 'email': email, 'avatar': avatar, 'description': description}
-    return user
+        return user
 
-def get_profile_quotes(id):
+def render_profile_quotes(id):
+    results = sql_select('SELECT quotes.id, content, image_url, mood, user_id, name FROM quotes INNER JOIN users ON quotes.user_id = users.id WHERE users.id = %s ORDER BY quotes.id DESC',[id])
     
+    all_quotes = []
+
+    for row in results:
+        id, content, image_url, mood, user_id, name = row
+        quote = {'id':id,'content': content, 'image_url': image_url, 'mood' : mood, 'user_id': f'{user_id}', 'name': name}
+        all_quotes.append(quote)
+
+    return all_quotes

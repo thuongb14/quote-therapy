@@ -25,12 +25,14 @@ Quote Therapy follows CRUD functions: Create, Read, Update and Delete. With Jinj
 * Sign up & Log in to be able to Add, Edit and Delete own quotes.
 * Users assigned as admin can have access to Edit & Delete all quotes.
 * Audio control for each quote - The tracks are fetched from Spotify API, but can only play the preview version which is for 29 seconds.
-* Image click to show details of the quote (track name, artist)
+* Image click to show details of the quote (track name, artist, name of user who posted the quote)
 * Users can edit their personal information on profile page and keep track of their shared quotes.
+* Users can visit other users' profile
 
-### In Progress:
-* Quote information to show who posted the quote.
-* Users to visit other users' profile.
+### Things can be updated:
+* 'Like' function
+* Sort quote by: newest, oldest
+* Follow another user
 
 
 

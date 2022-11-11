@@ -54,10 +54,10 @@ const APIController = (function () {
 })();
 
 const getTrack = (mood, audio) => {
-  let trackName = mood[Math.round(Math.random() * 30)].track;
+  let trackName = mood[Math.round(Math.random() * 50)].track;
   let trackSource = trackName.preview_url;
   while (trackSource === null) {
-    trackName = mood[Math.round(Math.random() * 30)].track
+    trackName = mood[Math.round(Math.random() * 50)].track
     trackSource = trackName.preview_url
     audio.src = trackSource
     audio.dataset.name = trackName.name;
@@ -111,10 +111,10 @@ loadPlaylist();
 const audioPlayers = document.querySelectorAll('.audio-player');
 
 if (audioPlayers.length) {
-  audioPlayers.forEach(function (audioPlayer, i) {
+  audioPlayers.forEach(function (audioPlayer) {
     let audio = audioPlayer.querySelector('audio');
     let playerButton = audioPlayer.querySelector('.player-button');
-    playerButton.addEventListener('click', function (e) {
+    playerButton.addEventListener('click', (e) => {
       let current = e.currentTarget;
       let audio = current.closest('.audio-player').querySelector('audio');
       let btnSvg = current.querySelector('.useBtn');
@@ -128,16 +128,16 @@ if (audioPlayers.length) {
     });
 
     let timeline = audioPlayer.querySelector('.timeline');
-    timeline.addEventListener('change', function (e) {
+    timeline.addEventListener('change', () => {
       let time = (timeline.value * audio.duration) / 100;
       audio.currentTime = time;
     });
 
-    audio.addEventListener('ended', function (e) {
+    audio.addEventListener('ended', () => {
       timeline.value = 0;
     });
 
-    audio.addEventListener('timeupdate', function (e) {
+    audio.addEventListener('timeupdate', () => {
       let percentagePosition = (100 * audio.currentTime) / audio.duration;
       timeline.value = percentagePosition;
     });

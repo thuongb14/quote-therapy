@@ -11,7 +11,7 @@ const modalContent = document.querySelector('.modal-content');
 // const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
 
 //Spotify API
-const APIController = (function () {
+const APIController = (() => {
   const clientId = '982b5eff3b2e4aeb91756e5de416f734';
   const clientSecret = '68083fb1d45244ec9bb7c480fd22bdc4';
 
@@ -54,19 +54,19 @@ const APIController = (function () {
 })();
 
 const getTrack = (mood, audio) => {
-  let trackName = mood[Math.round(Math.random() * 50)].track;
+  let trackName = mood[Math.round(Math.random() * 40)].track;
   let trackSource = trackName.preview_url;
   while (trackSource === null) {
-    trackName = mood[Math.round(Math.random() * 50)].track
-    trackSource = trackName.preview_url
-    audio.src = trackSource
+    trackName = mood[Math.round(Math.random() * 40)].track;
+    trackSource = trackName.preview_url;
+    audio.src = trackSource;
     audio.dataset.name = trackName.name;
-    audio.dataset.artist = trackName.artists[0]['name']
+    audio.dataset.artist = trackName.artists[0]['name'];
   }
-  audio.src = trackSource
+  audio.src = trackSource;
   audio.dataset.name = trackName.name;
-  audio.dataset.artist = trackName.artists[0]['name']
-}
+  audio.dataset.artist = trackName.artists[0]['name'];
+};
 
 const loadPlaylist = async () => {
   const token = await APIController.getToken();
@@ -90,17 +90,16 @@ const loadPlaylist = async () => {
 
   audios.forEach((audio) => {
     if (audio.className === 'happiness') {
-      getTrack(happinessPlaylist, audio)
+      getTrack(happinessPlaylist, audio);
     }
     if (audio.className === 'motivational') {
-      getTrack(motivationalPlaylist, audio)
+      getTrack(motivationalPlaylist, audio);
     }
     if (audio.className === 'love') {
-      getTrack(lovePlaylist, audio)
-
+      getTrack(lovePlaylist, audio);
     }
     if (audio.className === 'inspirational') {
-      getTrack(inspirationalPlaylist, audio)
+      getTrack(inspirationalPlaylist, audio);
     }
   });
 };
@@ -157,8 +156,7 @@ search.addEventListener('click', (e) => {
       quote.style = 'display: ';
     }
   });
-
-  e.preventDefault()
+  e.preventDefault();
 });
 
 //Quote pop up modal
@@ -172,7 +170,7 @@ imagesQuote.forEach((quote) => {
     </p>
     <p class="track-artist">Artist: ${quote.nextElementSibling.nextElementSibling.firstElementChild.dataset.artist}
     </p>
-    <p>Posted by <a href='/user_profile/${quote.dataset.id}'>${quote.dataset.name}</a></p>
+    <p>Posted by <a style="color: blue" href='/user_profile/${quote.dataset.id}'>${quote.dataset.name}</a></p>
 
     `;
   });

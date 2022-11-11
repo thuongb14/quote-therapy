@@ -2,6 +2,8 @@ const audios = document.querySelectorAll('audio');
 const quotes = document.querySelectorAll('#quote');
 const search = document.querySelector('.searchButton');
 const modal = document.querySelector('.modal');
+const imagesQuote = document.querySelectorAll('.quote-image');
+const modalContent = document.querySelector('.modal-content');
 
 //Spotify API
 const APIController = (function () {
@@ -46,6 +48,19 @@ const APIController = (function () {
   };
 })();
 
+const getTrack = (mood, audio) => {
+  let trackName = mood[Math.round(Math.random() * 30)].track;
+  audio.src = trackName.preview_url;
+  while (audio.src == null) {
+    trackName = mood[Math.round(Math.random() * 30)].track;
+    audio.src = trackName.preview_url
+    audio.dataset.name = trackName.name;
+    audio.dataset.artist = trackName.artists[0]['name']
+  }
+  audio.dataset.name = trackName.name;
+  audio.dataset.artist = trackName.artists[0]['name']
+}
+
 const loadPlaylist = async () => {
   const token = await APIController.getToken();
 
@@ -68,35 +83,17 @@ const loadPlaylist = async () => {
 
   audios.forEach((audio) => {
     if (audio.className === 'happiness') {
-      let happinessTrack =
-        happinessPlaylist[Math.round(Math.random() * 30)].track;
-      let artists = happinessTrack.artists;
-      audio.src = happinessTrack.preview_url;
-      audio.dataset.name = happinessTrack.name;
-      audio.dataset.artist = artists[0]['name'];
+      getTrack(happinessPlaylist, audio)
     }
     if (audio.className === 'motivational') {
-      let motivationalTrack =
-        motivationalPlaylist[Math.round(Math.random() * 30)].track;
-      let artists = motivationalTrack.artists;
-      audio.src = motivationalTrack.preview_url;
-      audio.dataset.name = motivationalTrack.name;
-      audio.dataset.artist = artists[0]['name'];
+      getTrack(motivationalPlaylist, audio)
     }
     if (audio.className === 'love') {
-      let loveTrack = lovePlaylist[Math.round(Math.random() * 30)].track;
-      let artists = loveTrack.artists;
-      audio.src = loveTrack.preview_url;
-      audio.dataset.name = loveTrack.name;
-      audio.dataset.artist = artists[0].name;
+      getTrack(lovePlaylist, audio)
+
     }
     if (audio.className === 'inspirational') {
-      let inspirationalTrack =
-        inspirationalPlaylist[Math.round(Math.random() * 30)].track;
-      let artists = inspirationalTrack.artists;
-      audio.src = inspirationalTrack.preview_url;
-      audio.dataset.name = inspirationalTrack.name;
-      audio.dataset.artist = artists[0]['name'];
+      getTrack(inspirationalPlaylist, audio)
     }
   });
 };
@@ -156,9 +153,6 @@ search.addEventListener('click', (e) => {
 
   e.preventDefault()
 });
-
-const imagesQuote = document.querySelectorAll('.quote-image');
-const modalContent = document.querySelector('.modal-content');
 
 //Quote pop up modal
 imagesQuote.forEach((quote) => {

@@ -131,6 +131,7 @@ def change_profile_info(user_id):
     editted_avatar = request.files['avatar']
 
     response = cloudinary.uploader.upload(editted_avatar, filename=editted_avatar.filename)
+    
     editted_avatar = response['secure_url']
 
     return sql_write('UPDATE users SET name = %s, avatar = %s, description = %s WHERE id = %s', [name, editted_avatar, description, user_id])

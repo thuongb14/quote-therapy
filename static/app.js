@@ -5,6 +5,11 @@ const modal = document.querySelector('.modal');
 const imagesQuote = document.querySelectorAll('.quote-image');
 const modalContent = document.querySelector('.modal-content');
 
+// require('dotenv').config()
+
+// const clientId = process.env.SPOTIFY_CLIENT_ID
+// const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
+
 //Spotify API
 const APIController = (function () {
   const clientId = '982b5eff3b2e4aeb91756e5de416f734';
@@ -50,13 +55,15 @@ const APIController = (function () {
 
 const getTrack = (mood, audio) => {
   let trackName = mood[Math.round(Math.random() * 30)].track;
-  audio.src = trackName.preview_url;
-  while (audio.src == null) {
-    trackName = mood[Math.round(Math.random() * 30)].track;
-    audio.src = trackName.preview_url
+  let trackSource = trackName.preview_url;
+  while (trackSource === null) {
+    trackName = mood[Math.round(Math.random() * 30)].track
+    trackSource = trackName.preview_url
+    audio.src = trackSource
     audio.dataset.name = trackName.name;
     audio.dataset.artist = trackName.artists[0]['name']
   }
+  audio.src = trackSource
   audio.dataset.name = trackName.name;
   audio.dataset.artist = trackName.artists[0]['name']
 }

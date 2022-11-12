@@ -50,6 +50,13 @@
         </div>
       </div>
 
+      {%if user_cookie['user_name'] != 'Unknown'%}
+      <form action="/like_quote_action" class="like-quote-form">
+        <input class="heart-checkbox" id="heart-{{quote['id']}}" type="checkbox" unchecked/>
+        <label for="heart-{{quote['id']}}" data-id="{{quote['id']}}">❤</label>
+      </form>
+      {%endif%}
+
       <svg class="plyrBtns" style="display: none" aria-hidden="true">
         <symbol class="icon icon-play" id="icon-play" viewBox="0 0 20 20">
           <path

@@ -140,3 +140,20 @@ main {
 .track-artist {
   margin-top: -1rem;
 }
+
+input.heart-checkbox {
+  display: none;
+}
+
+input.heart-checkbox ~ label{
+  color: grey;
+  font-size: 2rem;
+}
+
+input.heart-checkbox:checked ~ label{
+  color: red;
+}
+
+.like-quote-form {
+  margin: 0;
+}

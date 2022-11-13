@@ -1,4 +1,4 @@
-# Quote Therapy
+# Quotes Therapy
 Simple project to share & look for cheerup quotes. The project was created for General Assembly SEI course.
 
 ## Table of contents

@@ -50,10 +50,11 @@
         </div>
       </div>
 
+
       {%if user_cookie['user_name'] != 'Unknown'%}
       <form action="/like_quote_action" class="like-quote-form">
-        <input class="heart-checkbox" id="heart-{{quote['id']}}" type="checkbox" unchecked/>
-        <label for="heart-{{quote['id']}}" data-id="{{quote['id']}}">❤</label>
+        <input class="heart-checkbox" id="heart-{{quote['id']}}" type="checkbox" name="like" value="{{quote['id']}}"/>
+        <label for="heart-{{quote['id']}}">❤</label>
       </form>
       {%endif%}
 

@@ -1,9 +1,3 @@
-databases:
-  - name: quotes
-    databaseName: quotes
-    user: quotes
-  - key: super secret key
-
  services:
  - type: pserv
    name: pgbouncer
